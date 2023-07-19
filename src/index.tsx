@@ -14,7 +14,7 @@ import Resume from './components/Resume'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/portfolio",
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
