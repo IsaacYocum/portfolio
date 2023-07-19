@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { FC } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Outlet, Link } from "react-router-dom"
+import './App.css'
 
-function App() {
+type AppProps = { content?: React.ReactNode }
+
+let App: FC<AppProps> = ({ content }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box sx={{ flexGrow: 1, height: '100%' }} >
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            News
+          </Typography>
+          <Button color="inherit">
+            <Link to={"home"}>Home</Link>
+          </Button>
+          <Button color="inherit">
+            <Link to={"about"}>About</Link>
+          </Button>
+          <Button color="inherit">
+            <Link to={"resume"}>Resume</Link>
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <div id="content">
+        <Outlet />
+      </div>
+    </Box >
   );
 }
 
