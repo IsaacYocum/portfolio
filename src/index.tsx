@@ -16,15 +16,15 @@ import Resume from './components/Resume'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/portfolio" /> // needed for github pages
+    element: <Navigate to="/portfolio" /> // convenient redirect for local development 
   },
   {
-    path: "/portfolio",
+    path: "/portfolio", // needed for github pages
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "home",
+        path: "/portfolio",
         element: <Home />
       },
       {

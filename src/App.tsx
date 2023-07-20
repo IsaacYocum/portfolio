@@ -26,7 +26,7 @@ let App: FC<AppProps> = ({ content }) => {
             News
           </Typography>
           <Button color="inherit">
-            <Link to={"home"}>Home</Link>
+            <Link to={"/portfolio"}>Home</Link>
           </Button>
           <Button color="inherit">
             <Link to={"about"}>About</Link>
