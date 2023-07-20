@@ -8,10 +8,10 @@ import {
   RouterProvider,
  Navigate 
 } from "react-router-dom";
-import About from './components/About';
-import ErrorPage from './components/ErrorPage';
-import Home from './components/Home'
-import Resume from './components/Resume'
+import About from './routes/About';
+import ErrorPage from './routes/ErrorPage';
+import Home from './routes/Home'
+import Resume from './routes/Resume'
 
 const router = createBrowserRouter([
   {
