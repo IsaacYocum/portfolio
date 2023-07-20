@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
+ Navigate 
 } from "react-router-dom";
 import About from './components/About';
 import ErrorPage from './components/ErrorPage';
@@ -13,6 +14,10 @@ import Home from './components/Home'
 import Resume from './components/Resume'
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/portfolio" /> // needed for github pages
+  },
   {
     path: "/portfolio",
     element: <App />,
@@ -30,9 +35,8 @@ const router = createBrowserRouter([
         path: "resume",
         element: <Resume />
       }
-
     ]
-  },
+  }
 ])
 
 const root = ReactDOM.createRoot(
