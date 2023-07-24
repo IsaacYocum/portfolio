@@ -1,6 +1,5 @@
 #content {
-  display: flex;
-  flex-flow: column; 
+  display: grid;
   height: 100%;
 }
  

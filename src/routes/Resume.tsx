@@ -1,13 +1,18 @@
 import './Resume.css'
+import { Document, Page } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 let Resume = () => {
   return (
     <div id="resume">
-      <iframe
-        width="100%"
-        height="100%"
-        frameBorder={0}
-        src="https://docs.google.com/document/d/e/2PACX-1vTsM2SDodyzfLTRaGD3QgJNmnn2-hH0jpyubeVrrnLzGNcjU5TlFn7-xlWyNPO3NQ/pub?embedded=true"></iframe>
+      <Document file={'./Resume.pdf'} >
+        <Page 
+          pageNumber={1}
+          renderTextLayer={false}
+          renderAnnotationLayer={false}
+        />
+      </Document>
     </div>
   )
 }
