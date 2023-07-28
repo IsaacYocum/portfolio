@@ -11,6 +11,7 @@ let Resume = () => {
           pageNumber={1}
           renderTextLayer={false}
           renderAnnotationLayer={false}
+          width={800}
         />
       </Document>
     </div>
