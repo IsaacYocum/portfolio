@@ -1,43 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
- Navigate 
 } from "react-router-dom";
-import About from './routes/About';
-import ErrorPage from './routes/ErrorPage';
-import Home from './routes/Home'
-import Resume from './routes/Resume'
+import routes from './routes/routes';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Navigate to="/portfolio" /> // convenient redirect for local development 
-  },
-  {
-    path: "/portfolio", // needed for github pages
-    element: <App />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/portfolio",
-        element: <Home />
-      },
-      {
-        path: "about",
-        element: <About />
-      },
-      {
-        path: "resume",
-        element: <Resume />
-      }
-    ]
-  }
-])
+const router = createBrowserRouter(routes)
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
