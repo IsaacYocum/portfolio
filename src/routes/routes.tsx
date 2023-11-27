@@ -4,6 +4,7 @@ import About from '../components/About';
 import ErrorPage from '../components/ErrorPage';
 import Home from '../components/Home'
 import Resume from '../components/Resume'
+import Visualizer from "../components/Visualizer";
 
 let routes = [
   {
@@ -26,6 +27,10 @@ let routes = [
       {
         path: "resume",
         element: <Resume />
+      },
+      {
+        path: "visualizer",
+        element: <Visualizer />
       }
     ]
   }
