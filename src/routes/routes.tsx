@@ -4,7 +4,7 @@ import About from '../components/About';
 import ErrorPage from '../components/ErrorPage';
 import Home from '../components/Home'
 import Resume from '../components/Resume'
-import Visualizer from "../components/Visualizer";
+import Visualizer from "../components/Visualizer/Visualizer";
 
 let routes = [
   {
@@ -18,19 +18,25 @@ let routes = [
     children: [
       {
         path: "/portfolio",
-        element: <Home />
+        element: <Home />,
+        title: 'Home'
       },
       {
         path: "about",
-        element: <About />
+        element: <About />,
+        title: 'About'
       },
       {
         path: "resume",
-        element: <Resume />
+        element: <Resume />,
+        title: 'Resume'
+
       },
       {
         path: "visualizer",
-        element: <Visualizer />
+        element: <Visualizer />,
+        title: 'Visualizer'
+
       }
     ]
   }
