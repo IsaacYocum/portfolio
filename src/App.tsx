@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import logo from './logo.svg';
 import { Box } from '@mui/system';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import { Outlet } from "react-router-dom"
 import './App.css'
 
