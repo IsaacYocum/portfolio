@@ -1,3 +1,9 @@
 #startButton {
   margin-right: 10px;
 }
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+

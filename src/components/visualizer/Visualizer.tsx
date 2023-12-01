@@ -123,11 +123,6 @@ let Visualizer = () => {
     return style;
   }
 
-  let flexContainer = {
-    display: 'flex',
-    'flex-wrap': 'wrap'
-  }
-
   let handleChangeTarget = (event: React.ChangeEvent<HTMLInputElement>) => {
     const re = /^[0-9\b]+$/;
     if (event.target.value === '') {
@@ -171,8 +166,8 @@ let Visualizer = () => {
         </div>
       </div>
       <hr></hr>
-      <div style={flexContainer}>
-        {testArray.map(i => <div style={getNodeStyle(i)}>{i}</div>)}
+      <div className='flexContainer'>
+        {testArray.map(i => <div key={'node' + i} style={getNodeStyle(i)}>{i}</div>)}
       </div>
     </div >
   )
