@@ -1,12 +1,18 @@
-import { AppBar, Button, Drawer, IconButton, Toolbar, Typography, Link as LinkBase, useTheme } from '@mui/material';
-import { Link } from "react-router-dom"
+import { useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState } from 'react';
+import { AppBar, Button, Divider, Drawer, IconButton, Link as LinkBase, Switch, Toolbar, Typography } from '@mui/material';
+import { ChangeEvent, FC, ReactNode, useState } from 'react';
+import { Link } from "react-router-dom";
 import routes from '../../routes/routes';
-import './Navbar.css'
+import './Navbar.css';
 
-let Navbar = () => {
-  const theme = useTheme()
+interface AppProps {
+  themeSelected: boolean,
+  onThemeChange: (theme: boolean) => void;
+}
+
+let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
+  let theme = useTheme()
   let [title, setTitle] = useState('Home')
   let [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -19,28 +25,35 @@ let Navbar = () => {
     setDrawerOpen(open);
   }
 
+  let handleThemeClick = (event: ChangeEvent<HTMLInputElement>) => {
+    onThemeChange(event.target.checked)
+  }
+
   function createLinks(fromDrawer = false) {
-    return routes[1].children?.map(route => (
+    let linkSx: any = undefined;
+    if (theme.palette.mode === 'light' && !fromDrawer) {
+      linkSx = { color: theme.palette.primary.contrastText }
+    }
+
+    let links = routes[1].children?.map(route => (
       <Button
         key={route.path}
-        color='secondary'
         onClick={() => clickLink(route.title, fromDrawer)}
       >
         <LinkBase
           to={route.path}
           component={Link}
         >
-          {route.title}
+          <Typography {...linkSx}>{route.title}</Typography>
         </LinkBase>
-      </Button>
+      </Button >
     ));
+
+    return links;
   }
 
-  let drawer = (
-    <Drawer
-      open={drawerOpen}
-      onClose={() => toggleDrawer(false)}
-    >
+  let createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
+    return (
       <AppBar position="static" style={{ marginBottom: '10px' }}>
         <Toolbar variant="dense">
           <IconButton
@@ -49,41 +62,45 @@ let Navbar = () => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={() => toggleDrawer(false)}
+            onClick={() => toggleDrawer(openDrawer)}
           >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {title}
           </Typography>
+          {children}
         </Toolbar>
       </AppBar>
+    )
+  }
+
+  let drawer = (
+    <Drawer
+      open={drawerOpen}
+      onClose={() => toggleDrawer(false)}
+    >
+      {createAppBar(false)}
       <div className='drawer'>
         {createLinks(true)}
+        <div style={{ marginTop: 'auto', textAlign: 'center' }}>
+          <Divider />
+          <Typography>Theme</Typography>
+          <div className='three-columns-grid'>
+            <Typography>Light</Typography>
+            <Switch checked={themeSelected} onChange={handleThemeClick} />
+            <Typography>Dark</Typography>
+          </div>
+        </div>
       </div>
     </Drawer >
   )
 
   return (
-    <AppBar position="static" style={{ marginBottom: '10px' }}>
+    <div id="navbar">
       {drawer}
-      <Toolbar variant="dense">
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-          onClick={() => toggleDrawer(true)}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {title}
-        </Typography>
-        {createLinks()}
-      </Toolbar>
-    </AppBar>
+      {createAppBar(true, createLinks())}
+    </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Button, TextField, useTheme } from "@mui/material";
+import { Box, Button, PaletteColor, TextField, useTheme } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import './Visualizer.css'
 
@@ -70,8 +70,8 @@ let Visualizer = () => {
   };
 
   interface Style {
-    backgroundColor?: string;
-    background?: string;
+    backgroundColor?: any;
+    background?: any;
     transition?: string;
     height?: string;
     width?: string;
@@ -105,6 +105,10 @@ let Visualizer = () => {
       colors.push('red')
     }
 
+    if (colors.length === 0) {
+      style.background = theme.palette.secondary.light
+    }
+
     if (colors.length > 0) {
       style.color = 'gold'
     }
@@ -126,15 +130,17 @@ let Visualizer = () => {
 
   let handleChangeTarget = (event: React.ChangeEvent<HTMLInputElement>) => {
     const re = /^[0-9\b]+$/;
-    if (event.target.value === '') {
-      setTarget(event.target.value)
+    let value = event.target.value;
+
+    if (value === '') {
+      setTarget(value)
       setError('Must be a number')
-    } else if (re.test(event.target.value)) {
-      if (testArray.includes(parseInt(event.target.value))) {
-        setTarget(event.target.value)
+    } else if (re.test(value)) {
+      if (testArray.includes(parseInt(value))) {
+        setTarget(value)
         setError('')
       } else {
-        setTarget(event.target.value)
+        setTarget(value)
         setError('Target must be in array')
       }
     } else {
