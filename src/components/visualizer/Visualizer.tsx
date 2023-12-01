@@ -1,21 +1,34 @@
-import { Button } from "@mui/material";
-import { useState } from "react";
+import { Button, TextField } from "@mui/material";
+import { ChangeEvent, useState } from "react";
+import './Visualizer.css'
 
 let Visualizer = () => {
   const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
   let [min, setMin] = useState(0);
   let [max, setMax] = useState(0);
-
   let [curr, setCurr] = useState(0);
+  let [target, setTarget] = useState(`${testArray[0]}`);
+  let [error, setError] = useState('');
 
   const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
 
-  let start = () => {
+  let handleStart = () => {
     console.log('start')
     //iterate(testArray);
-    binarySearch(testArray, 14)
+    binarySearch(testArray, parseInt(target))
   };
+
+  let hasErrors = (targ = target) => {
+    console.log(targ, typeof targ)
+    if (typeof targ !== "number") {
+      setError('Must be a number');
+      return true;
+    }
+
+    setError('');
+    return false;
+  }
 
   async function iterate(arr: Array<number>) {
     for (let i = 0; i < arr.length; i++) {
@@ -31,7 +44,6 @@ let Visualizer = () => {
     setCurr(arr[mid]);
     setMin(arr[beg]);
     setMax(arr[end]);
-    await delay(2000);
 
     while (beg <= end) {
       let mid = Math.floor((end + beg) / 2);
@@ -56,46 +68,59 @@ let Visualizer = () => {
     return -1;
   };
 
-  interface Border {
-    border?: string;
-    borderImage?: string;
+  interface Style {
+    backgroundColor?: string;
+    background?: string;
+    transition?: string;
+    height?: string;
+    width?: string;
+    color: string;
+    WebkitTransition: string;
+    margin: string;
+    padding: string;
   }
 
-  let getBorderColor = (i: number) => {
+  let getNodeStyle = (i: number) => {
     let colors = []
-    let border: Border = {};
+    let style: Style = {
+      height: '50px',
+      width: '50px',
+      transition: 'all .5s linear',
+      WebkitTransition: 'all .5s linear',
+      color: 'black',
+      padding: '10px',
+      margin: '10px',
+    };
 
     if (i === min) {
       colors.push('blue')
-    }
-    if (i === max) {
-      colors.push('red')
     }
 
     if (i === curr) {
       colors.push('green')
     }
 
+    if (i === max) {
+      colors.push('red')
+    }
+
     if (colors.length > 0) {
+      style.color = 'gold'
+    }
+
+    if (colors.length === 1) {
+      style.background = colors[0]
+    }
+
+    if (colors.length > 1) {
       let gradientPercent = 100 / colors.length;
       if (gradientPercent <= 100) {
-        let gradient = colors.map((color, i) => `${color + ' ' + gradientPercent * i + '% ' + gradientPercent * (i + 1)}% `)
-        border.border = 'solid'
-        border.borderImage = `linear-gradient(45deg, ${gradient}) 1`
+        let gradient = colors.map((color, i) => `${color + ' ' + gradientPercent * i + '% ' + gradientPercent * (i + 1)}%`)
+        style.background = `linear-gradient(45deg, ${gradient})`
       }
     }
 
-    return border;
-  }
-
-  let getStyle = (i: number) => {
-    console.log(i)
-
-    return {
-      ...getBorderColor(i),
-      padding: '10px',
-      margin: '10px',
-    }
+    return style;
   }
 
   let flexContainer = {
@@ -103,19 +128,51 @@ let Visualizer = () => {
     'flex-wrap': 'wrap'
   }
 
+  let handleChangeTarget = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const re = /^[0-9\b]+$/;
+    if (event.target.value === '') {
+      setTarget(event.target.value)
+      setError('Must be a number')
+    } else if (re.test(event.target.value)) {
+      if (testArray.includes(parseInt(event.target.value))) {
+        setTarget(event.target.value)
+        setError('')
+      } else {
+        setTarget(event.target.value)
+        setError('Target must be in array')
+      }
+    } else {
+      setError('Must be a number')
+    }
+  }
+
   return (
     <div>
       <div style={{ display: 'flex' }}>
-        <p style={{ paddingRight: '10px' }}>Visualizer</p>
-        <Button
-          onClick={start}
-          variant='contained'
-        >
-          Start
-        </Button>
+        <div id='startButton'>
+          <Button
+            onClick={handleStart}
+            variant='contained'
+            disabled={error.length > 0}
+          >
+            Start
+          </Button>
+        </div>
+        <div>
+          <TextField
+            label="Target"
+            variant="outlined"
+            type='number'
+            value={target}
+            helperText={error}
+            error={error.length > 0}
+            onChange={handleChangeTarget}
+          />
+        </div>
       </div>
+      <hr></hr>
       <div style={flexContainer}>
-        {testArray.map(i => <div style={getStyle(i)}>{i}</div>)}
+        {testArray.map(i => <div style={getNodeStyle(i)}>{i}</div>)}
       </div>
     </div >
   )
