@@ -1,4 +1,4 @@
-import { AppBar, Button, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Drawer, IconButton, Toolbar, Typography, Link as LinkBase, useTheme } from '@mui/material';
 import { Link } from "react-router-dom"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import routes from '../../routes/routes';
 import './Navbar.css'
 
 let Navbar = () => {
+  const theme = useTheme()
   let [title, setTitle] = useState('Home')
   let [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -22,10 +23,15 @@ let Navbar = () => {
     return routes[1].children?.map(route => (
       <Button
         key={route.path}
-        color="inherit"
+        color='secondary'
         onClick={() => clickLink(route.title, fromDrawer)}
       >
-        <Link to={route.path}>{route.title}</Link>
+        <LinkBase
+          to={route.path}
+          component={Link}
+        >
+          {route.title}
+        </LinkBase>
       </Button>
     ));
   }

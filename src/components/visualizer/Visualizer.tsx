@@ -1,8 +1,9 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, useTheme } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import './Visualizer.css'
 
 let Visualizer = () => {
+  const theme = useTheme();
   const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
   let [min, setMin] = useState(0);

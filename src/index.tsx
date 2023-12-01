@@ -7,8 +7,21 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import routes from './routes/routes';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 
 const router = createBrowserRouter(routes)
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'sans-serif',
+    ].join(','),
+  },
+  palette: {
+    mode: 'dark'
+  }
+})
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +29,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
