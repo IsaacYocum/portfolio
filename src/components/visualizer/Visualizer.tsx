@@ -1,5 +1,5 @@
 import { Box, Button, PaletteColor, TextField, useTheme } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import './Visualizer.css'
 
 let Visualizer = () => {
