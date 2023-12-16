@@ -1,41 +1,34 @@
 import React, { FC, useState } from 'react';
 import { Box } from '@mui/system';
 import Navbar from './components/navbar/Navbar';
-import { Outlet } from "react-router-dom"
-import './App.css'
+import { Outlet } from "react-router-dom";
+import './App.css';
 import { CssBaseline } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Theme, ThemeProvider } from '@mui/material/styles';
+import Themes from './Themes';
+
+declare module '@mui/material/styles' {
+  interface TypeText {
+    header: string
+  }
+}
 
 type AppProps = { content?: React.ReactNode }
 
 let App: FC<AppProps> = () => {
 
-  let [themeState, setThemeState] = useState(false);
+  let [theme, setTheme] = useState<Theme>(Themes[0]);
 
-  const defaultTheme = createTheme({
-    typography: {
-      fontFamily: [
-        'sans-serif',
-      ].join(','),
-    },
-    palette: {
-      text: {
-        primary: '#fff'
-      },
-      mode: !themeState ? 'light' : 'dark'
-    }
-  })
-
-  let handleThemeChange = (theme: boolean) => {
-    setThemeState(theme);
+  let handleThemeChange = (theme: Theme) => {
+    setTheme(theme);
   }
 
   return (
-    <ThemeProvider theme={defaultTheme} >
+    <ThemeProvider theme={theme} >
       <CssBaseline />
       <Box sx={{ flexGrow: 1, height: '100%' }} >
         <Navbar
-          themeSelected={themeState}
+          themeSelected={theme}
           onThemeChange={handleThemeChange}
         />
         <div id="content">

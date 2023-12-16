@@ -1,14 +1,15 @@
-import { useTheme } from '@mui/material';
+import { MenuItem, Select, Theme, SelectChangeEvent, useTheme, InputLabel, FormControl } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Button, Divider, Drawer, IconButton, Link as LinkBase, Switch, Toolbar, Typography } from '@mui/material';
-import { ChangeEvent, FC, ReactNode, useState } from 'react';
+import { AppBar, Button, Divider, Drawer, IconButton, Link as LinkBase, Toolbar, Typography } from '@mui/material';
+import { FC, ReactNode, useState } from 'react';
 import { Link } from "react-router-dom";
 import routes from '../../routes/routes';
 import './Navbar.css';
+import Themes from '../../Themes';
 
 interface AppProps {
-  themeSelected: boolean,
-  onThemeChange: (theme: boolean) => void;
+  themeSelected: Theme,
+  onThemeChange: (theme: Theme) => void;
 }
 
 let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
@@ -25,8 +26,9 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
     setDrawerOpen(open);
   }
 
-  let handleThemeClick = (event: ChangeEvent<HTMLInputElement>) => {
-    onThemeChange(event.target.checked)
+  let handleThemeChange = (event: SelectChangeEvent<string>) => {
+    let theme = Themes.find(theme => theme.id === event.target.value);
+    if (theme) onThemeChange(theme);
   }
 
   function createLinks(fromDrawer = false) {
@@ -54,7 +56,7 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
 
   let createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
     return (
-      <AppBar>
+      <AppBar position='static'>
         <Toolbar variant="dense">
           <IconButton
             size="large"
@@ -83,14 +85,20 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
       {createAppBar(false)}
       <div className='drawer'>
         {createLinks(true)}
-        <div style={{ marginTop: 'auto', textAlign: 'center' }}>
+        <div style={{ marginTop: 'auto', textAlign: 'center', marginBottom: '10px' }}>
           <Divider />
-          <Typography>Theme</Typography>
-          <div className='three-columns-grid'>
-            <Typography>Light</Typography>
-            <Switch checked={themeSelected} onChange={handleThemeClick} />
-            <Typography>Dark</Typography>
-          </div>
+          <FormControl fullWidth>
+            <InputLabel id="themeSelector">Theme</InputLabel>
+            <Select
+              id='themeSelector'
+              labelId='themeSelector'
+              label='Theme'
+              value={themeSelected.id}
+              onChange={handleThemeChange}
+            >
+              {Themes.map(theme => <MenuItem key={theme.id} value={theme.id}>{theme.id}</MenuItem>)}
+            </Select>
+          </FormControl>
         </div>
       </div>
     </Drawer >

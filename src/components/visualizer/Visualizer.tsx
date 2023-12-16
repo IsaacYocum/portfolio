@@ -1,8 +1,7 @@
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography, useTheme } from "@mui/material";
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import './Visualizer.css'
 import CSS from 'csstype'
-import Settings from "./Selection";
 
 let Visualizer = () => {
   const theme = useTheme();
@@ -88,7 +87,6 @@ let Visualizer = () => {
     setCurr(0);
     setMin(0);
     setMax(0);
-    console.log(target)
     algorithm.run()
   };
 
@@ -100,7 +98,6 @@ let Visualizer = () => {
   };
 
   let binarySearch = async (arr: Array<number> = testArray, tar: number) => {
-    console.log(tar)
     let beg = 0;
     let end = arr.length - 1;
     let mid = Math.floor((end + beg) / 2);
@@ -211,7 +208,6 @@ let Visualizer = () => {
 
   let handleSelectTargetChange = (event: SelectChangeEvent<number>) => {
     let value = event.target.value;
-    console.log(value)
     setTarget(value as number);
   }
 
