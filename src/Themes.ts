@@ -17,17 +17,6 @@ declare module '@mui/material/styles' {
 
 let light = createTheme({
   id: 'light',
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: {
-          backgroundImage: `url(${background})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        }
-      }
-    }
-  },
   typography: {
     fontFamily: [
       'sans-serif',
@@ -56,9 +45,36 @@ let dark = createTheme({
   }
 })
 
+let meme = createTheme({
+  id: 'meme',
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundImage: `url(${background})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+        }
+      }
+    }
+  },
+  typography: {
+    fontFamily: [
+      'sans-serif',
+    ].join(','),
+  },
+  palette: {
+    text: {
+      header: '#fff'
+    },
+    mode: 'dark'
+  }
+})
+
 let Themes = [
   light,
-  dark
+  dark,
+  meme
 ]
 
 export default Themes;

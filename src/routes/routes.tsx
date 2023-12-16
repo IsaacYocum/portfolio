@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import App from '../App';
 import About from '../components/About';
 import ErrorPage from '../components/ErrorPage';
-import Home from '../components/Home'
+import Home from '../components/home/Home'
 import Resume from '../components/resume/Resume'
 import Visualizer from "../components/visualizer/Visualizer";
 
