@@ -19,6 +19,9 @@ let App: FC<AppProps> = () => {
       ].join(','),
     },
     palette: {
+      text: {
+        primary: '#fff'
+      },
       mode: !themeState ? 'light' : 'dark'
     }
   })

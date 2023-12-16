@@ -1,35 +1,96 @@
-import { Box, Button, PaletteColor, TextField, useTheme } from "@mui/material";
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import './Visualizer.css'
+import CSS from 'csstype'
+import Settings from "./Selection";
 
 let Visualizer = () => {
   const theme = useTheme();
   const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+  let [target, setTarget] = useState<number>(testArray[1]);
+
+  interface DataStructure {
+    id: string,
+    label: string,
+    value: string,
+    algorithms: Algorithm[],
+  }
+
+  interface Algorithm {
+    id: string,
+    label: string,
+    value: string,
+    run: (arr?: number[], tar?: number) => void,
+    targetRequired: boolean
+  }
+
+  let iterateArray: Algorithm = {
+    id: 'iterate',
+    label: 'Iterate',
+    value: 'iterate',
+    run: () => iterate(testArray),
+    targetRequired: false,
+  }
+
+  let binarySearchAlg: Algorithm = {
+    id: 'binarySearch',
+    label: 'Binary Search',
+    value: 'binarySearch',
+    run: (_, tar?: number) => binarySearch(testArray, target || 0),
+    targetRequired: true,
+  }
+
+  let binaryTreeSearch: Algorithm = {
+    id: 'binaryTreeSearch',
+    label: 'Binary Tree Search',
+    value: 'binaryTreeSearch',
+    run: () => { },
+    targetRequired: true,
+  }
+
+
+  let array: DataStructure = {
+    id: 'array',
+    label: 'Array',
+    value: 'array',
+    algorithms: [
+      iterateArray,
+      binarySearchAlg,
+    ]
+  }
+
+  let binaryTree: DataStructure = {
+    id: 'binaryTree',
+    label: 'Binary Tree',
+    value: 'Binary Tree',
+    algorithms: [
+      binaryTreeSearch,
+    ]
+  }
+
+  let dataStructures = [
+    array,
+    binaryTree
+  ]
+
 
   let [min, setMin] = useState(0);
   let [max, setMax] = useState(0);
   let [curr, setCurr] = useState(0);
-  let [target, setTarget] = useState(`${testArray[0]}`);
   let [error, setError] = useState('');
+  let [dataStructure, setDataStructure] = useState<DataStructure>(array);
+  let [algorithm, setAlgorithm] = useState<Algorithm>(array.algorithms[0]);
 
   const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
 
   let handleStart = () => {
-    console.log('start')
     //iterate(testArray);
-    binarySearch(testArray, parseInt(target))
+    setCurr(0);
+    setMin(0);
+    setMax(0);
+    console.log(target)
+    algorithm.run()
   };
-
-  let hasErrors = (targ = target) => {
-    console.log(targ, typeof targ)
-    if (typeof targ !== "number") {
-      setError('Must be a number');
-      return true;
-    }
-
-    setError('');
-    return false;
-  }
 
   async function iterate(arr: Array<number>) {
     for (let i = 0; i < arr.length; i++) {
@@ -38,7 +99,8 @@ let Visualizer = () => {
     }
   };
 
-  async function binarySearch(arr: Array<number>, target: number) {
+  let binarySearch = async (arr: Array<number> = testArray, tar: number) => {
+    console.log(tar)
     let beg = 0;
     let end = arr.length - 1;
     let mid = Math.floor((end + beg) / 2);
@@ -50,40 +112,26 @@ let Visualizer = () => {
       let mid = Math.floor((end + beg) / 2);
       setCurr(arr[mid]);
       await delay(2000);
-      if (arr[mid] === target) return mid;
+      if (arr[mid] === tar) break;
 
-      if (arr[mid] < target) {
+      if (arr[mid] < tar) {
         beg = mid + 1;
         setMin(arr[beg]);
         await delay(2000);
       }
 
-      if (arr[mid] > target) {
+      if (arr[mid] > tar) {
         end = mid - 1;
         setMax(arr[end]);
         await delay(2000);
       }
 
     }
-
-    return -1;
   };
-
-  interface Style {
-    backgroundColor?: any;
-    background?: any;
-    transition?: string;
-    height?: string;
-    width?: string;
-    color: string;
-    WebkitTransition: string;
-    margin: string;
-    padding: string;
-  }
 
   let getNodeStyle = (i: number) => {
     let colors = []
-    let style: Style = {
+    let style: CSS.Properties = {
       height: '50px',
       width: '50px',
       transition: 'all .5s linear',
@@ -91,6 +139,8 @@ let Visualizer = () => {
       color: 'black',
       padding: '10px',
       margin: '10px',
+      borderRadius: '10',
+      textAlign: 'center'
     };
 
     if (i === min) {
@@ -128,30 +178,84 @@ let Visualizer = () => {
     return style;
   }
 
-  let handleChangeTarget = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const re = /^[0-9\b]+$/;
-    let value = event.target.value;
+  // let handleChangeTarget = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const re = /^[0-9\b]+$/;
+  //   let value = event.target.value;
+  //
+  //   if (value === '') {
+  //     setTarget(value)
+  //     setError('Must be a number')
+  //   } else if (re.test(value)) {
+  //     if (testArray.includes(parseInt(value))) {
+  //       setTarget(value)
+  //       setError('')
+  //     } else {
+  //       setTarget(value)
+  //       setError('Target must be in array')
+  //     }
+  //   } else {
+  //     setError('Must be a number')
+  //   }
+  // }
 
-    if (value === '') {
-      setTarget(value)
-      setError('Must be a number')
-    } else if (re.test(value)) {
-      if (testArray.includes(parseInt(value))) {
-        setTarget(value)
-        setError('')
-      } else {
-        setTarget(value)
-        setError('Target must be in array')
-      }
-    } else {
-      setError('Must be a number')
-    }
+  let handleDataStructureSelectChange = (event: SelectChangeEvent<string>) => {
+    let ds = dataStructures.find(d => d.value === event.target.value) || array;
+    setDataStructure(ds);
+    setAlgorithm(ds?.algorithms[0]);
+  }
+
+  let handleAlgorithmSelectChange = (event: SelectChangeEvent<string>) => {
+    let ag = dataStructure?.algorithms.find(a => a.value === event.target.value) || dataStructure?.algorithms[0];
+    setAlgorithm(ag);
+  }
+
+  let handleSelectTargetChange = (event: SelectChangeEvent<number>) => {
+    let value = event.target.value;
+    console.log(value)
+    setTarget(value as number);
   }
 
   return (
-    <div>
-      <div style={{ display: 'flex' }}>
-        <div id='startButton'>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2} columns={12}>
+        <Grid item xs={4}>
+          <FormControl fullWidth margin="normal">
+            <InputLabel id='dataStructureLabel'>Data Structure</InputLabel>
+            <Select
+              id='dataStructureSelect'
+              labelId='dataStructureLabel'
+              value={dataStructure?.value}
+              label='Data Structure'
+              onChange={handleDataStructureSelectChange}
+            >
+              {dataStructures.map(dataStructure => <MenuItem key={dataStructure.id} value={dataStructure.value}>{dataStructure.label}</MenuItem>)}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id='algorithmLabel'>Algorithm</InputLabel>
+            <Select
+              id='algorithmSelect'
+              labelId='algorithmLabel'
+              value={algorithm?.value}
+              label='Algorithm'
+              onChange={handleAlgorithmSelectChange}
+            >
+              {dataStructure?.algorithms?.map(algorithm => <MenuItem key={algorithm.id} value={algorithm.value}>{algorithm.label}</MenuItem>)}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <InputLabel id='targetLabel'>Target</InputLabel>
+            <Select
+              id='targetSelect'
+              labelId='targetLabel'
+              value={target}
+              label='Target'
+              disabled={!algorithm.targetRequired}
+              onChange={handleSelectTargetChange}
+            >
+              {testArray.map(i => <MenuItem key={i} value={i}>{i}</MenuItem>)}
+            </Select>
+          </FormControl>
           <Button
             onClick={handleStart}
             variant='contained'
@@ -159,24 +263,23 @@ let Visualizer = () => {
           >
             Start
           </Button>
-        </div>
-        <div>
-          <TextField
-            label="Target"
-            variant="outlined"
-            type='number'
-            value={target}
-            helperText={error}
-            error={error.length > 0}
-            onChange={handleChangeTarget}
-          />
-        </div>
-      </div>
-      <hr></hr>
-      <div className='flexContainer'>
-        {testArray.map(i => <div key={'node' + i} style={getNodeStyle(i)}>{i}</div>)}
-      </div>
-    </div >
+
+          {/* <Settings */}
+          {/*   handleStart={handleStart} */}
+          {/*   target={target} */}
+          {/*   error={error} */}
+          {/*   handleChangeTarget={handleChangeTarget} */}
+          {/* /> */}
+        </Grid>
+        <Grid item xs={8}>
+          <Typography variant="h6">Visualizer</Typography>
+          <hr />
+          <div className='flexContainer'>
+            {testArray.map(i => <div key={'node' + i} style={getNodeStyle(i)}>{i}</div>)}
+          </div>
+        </Grid>
+      </Grid >
+    </Box >
   )
 }
 

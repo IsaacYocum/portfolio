@@ -3,7 +3,7 @@ import App from '../App';
 import About from '../components/About';
 import ErrorPage from '../components/ErrorPage';
 import Home from '../components/Home'
-import Resume from '../components/Resume'
+import Resume from '../components/resume/Resume'
 import Visualizer from "../components/visualizer/Visualizer";
 
 let routes = [

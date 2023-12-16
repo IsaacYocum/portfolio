@@ -4,6 +4,7 @@
   flex-grow: 1;
   margin-left: 20px;
   margin-right: 20px;
+  z-index: 3;
 }
 
 .three-columns-grid {
@@ -11,4 +12,10 @@
   grid-auto-rows: 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }

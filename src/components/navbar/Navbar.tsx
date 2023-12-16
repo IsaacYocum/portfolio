@@ -54,7 +54,7 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
 
   let createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
     return (
-      <AppBar position="static" style={{ marginBottom: '10px' }}>
+      <AppBar>
         <Toolbar variant="dense">
           <IconButton
             size="large"

@@ -7,7 +7,7 @@ let Resume = () => {
   return (
     <div id="resume">
       <Document file={'./Resume.pdf'} >
-        <Page 
+        <Page
           pageNumber={1}
           renderTextLayer={false}
           renderAnnotationLayer={false}
