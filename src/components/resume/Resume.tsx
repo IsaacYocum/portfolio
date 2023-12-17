@@ -6,7 +6,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 let Resume = () => {
   return (
     <div id="resume">
-      <Document file={'./Resume.pdf'} >
+      <Document
+        className='pdf'
+        file={'./resume.pdf'}
+      >
         <Page
           pageNumber={1}
           renderTextLayer={false}

@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import App from '../App';
-import About from '../components/About';
+import About from '../components/about/About';
 import ErrorPage from '../components/ErrorPage';
 import Home from '../components/home/Home'
 import Resume from '../components/resume/Resume'

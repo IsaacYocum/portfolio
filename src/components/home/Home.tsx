@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import Footer from "../footer/Footer";
 import './Home.css'
 
 let Home = () => {
@@ -17,12 +18,19 @@ let Home = () => {
           </div>
         </h1>
       </div>
+
       <blockquote className="quote">
         "That looks cool, let me try"
         <figcaption>
           <cite>Isaac</cite>
         </figcaption>
       </blockquote>
+      <div>
+        TODO
+        <ul>Showcase skills</ul>
+        <ul>Call to action</ul>
+      </div>
+      <Footer />
     </div>
   )
 }
