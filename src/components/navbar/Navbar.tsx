@@ -1,11 +1,12 @@
-import { MenuItem, Select, Theme, SelectChangeEvent, useTheme, InputLabel, FormControl } from '@mui/material';
+import { MenuItem, Select, Theme, SelectChangeEvent, useTheme, InputLabel, FormControl, SvgIcon, Icon } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Button, Divider, Drawer, IconButton, Link as LinkBase, Toolbar, Typography } from '@mui/material';
 import { FC, ReactNode, useState } from 'react';
 import { Link } from "react-router-dom";
 import routes from '../../routes/routes';
 import './Navbar.css';
-import Themes from '../../Themes';
+import Themes, { ThemeName } from '../../Themes';
+import drawerIcon from '../../assets/drawer.svg'
 
 interface AppProps {
   themeSelected: Theme,
@@ -54,6 +55,12 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
     return links;
   }
 
+  const memeDrawerIcon = (
+    <Icon>
+      <img src={drawerIcon} height={20} width={28} style={{ transform: drawerOpen ? 'scale(-1, -1)' : 'none' }} />
+    </Icon>
+  )
+
   let createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
     return (
       <AppBar position='static'>
@@ -66,7 +73,7 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
             sx={{ mr: 2 }}
             onClick={() => toggleDrawer(openDrawer)}
           >
-            <MenuIcon />
+            {theme.id === ThemeName.Meme ? memeDrawerIcon : <MenuIcon />}
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {title}

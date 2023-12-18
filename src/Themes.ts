@@ -2,9 +2,15 @@ import { createTheme } from "@mui/material"
 import background from './assets/background.jpg'
 import road from './assets/road.png'
 
+export enum ThemeName {
+  Light = 'LIGHT',
+  Dark = 'DARK',
+  Meme = 'MEME',
+}
+
 declare module '@mui/material/styles' {
   interface Theme {
-    id: string
+    id: ThemeName
   }
 
   interface ThemeOptions {
@@ -17,7 +23,7 @@ declare module '@mui/material/styles' {
 }
 
 let light = createTheme({
-  id: 'light',
+  id: ThemeName.Light,
   typography: {
     fontFamily: [
       'sans-serif',
@@ -40,7 +46,7 @@ let light = createTheme({
 })
 
 let dark = createTheme({
-  id: 'dark',
+  id: ThemeName.Dark,
   typography: {
     fontFamily: [
       'sans-serif',
@@ -55,7 +61,7 @@ let dark = createTheme({
 })
 
 let meme = createTheme({
-  id: 'meme',
+  id: ThemeName.Meme,
   components: {
     MuiAppBar: {
       styleOverrides: {
