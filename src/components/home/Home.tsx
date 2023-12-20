@@ -30,7 +30,6 @@ let Home = () => {
         <ul>Showcase skills</ul>
         <ul>Call to action</ul>
       </div>
-      <Footer />
     </div>
   )
 }

@@ -8,9 +8,9 @@ let Footer = () => {
   }
 
   return (
-    <div style={styles}>
-      <hr />
-      <div>Footer</div>
+    <footer style={styles}>
+      <div>Links</div>
+      <div>Site</div>
       <div>
         <ul>Contact info</ul>
         <ul>email</ul>
@@ -18,7 +18,8 @@ let Footer = () => {
         <ul>linkedin</ul>
         <ul>Facebook?</ul>
       </div>
-    </div>
+      <div>Projects</div>
+    </footer>
   )
 }
 

@@ -39,17 +39,19 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
     }
 
     let links = routes[1].children?.map(route => (
-      <Button
-        key={route.path}
-        onClick={() => clickLink(route.title, fromDrawer)}
-      >
-        <LinkBase
-          to={route.path}
-          component={Link}
+      !route.path.includes('/') ?
+        <Button
+          key={route.path}
+          onClick={() => clickLink(route.title, fromDrawer)}
         >
-          <Typography {...linkSx}>{route.title}</Typography>
-        </LinkBase>
-      </Button >
+          <LinkBase
+            to={route.path}
+            component={Link}
+          >
+            <Typography {...linkSx}>{route.title}</Typography>
+          </LinkBase>
+        </Button>
+        : null
     ));
 
     return links;

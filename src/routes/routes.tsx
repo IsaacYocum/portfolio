@@ -3,8 +3,11 @@ import App from '../App';
 import About from '../components/about/About';
 import ErrorPage from '../components/ErrorPage';
 import Home from '../components/home/Home'
+import Projects from "../components/projects/Projects";
 import Resume from '../components/resume/Resume'
 import Visualizer from "../components/visualizer/Visualizer";
+
+const PROJECTS_PATH = 'projects'
 
 let routes = [
   {
@@ -17,7 +20,7 @@ let routes = [
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/portfolio",
+        path: "home",
         element: <Home />,
         title: 'Home'
       },
@@ -30,14 +33,23 @@ let routes = [
         path: "resume",
         element: <Resume />,
         title: 'Resume'
-
       },
       {
-        path: "visualizer",
+        path: PROJECTS_PATH,
+        element: <Projects />,
+        title: 'Projects',
+      },
+      {
+        path: `${PROJECTS_PATH}/visualizer`,
         element: <Visualizer />,
         title: 'Visualizer'
-
+      },
+      {
+        path: `${PROJECTS_PATH}/tictactoe`,
+        element: <Visualizer />,
+        title: 'tictactoe'
       }
+
     ]
   }
 ]

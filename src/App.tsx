@@ -6,6 +6,7 @@ import './App.css';
 import { CssBaseline } from '@mui/material';
 import { Theme, ThemeProvider } from '@mui/material/styles';
 import Themes from './Themes';
+import Footer from './components/footer/Footer';
 
 declare module '@mui/material/styles' {
   interface TypeText {
@@ -26,15 +27,14 @@ let App: FC<AppProps> = () => {
   return (
     <ThemeProvider theme={theme} >
       <CssBaseline />
-      <Box sx={{ flexGrow: 1, height: '100%' }} >
-        <Navbar
-          themeSelected={theme}
-          onThemeChange={handleThemeChange}
-        />
-        <div id="content">
-          <Outlet />
-        </div>
-      </Box >
+      <Navbar
+        themeSelected={theme}
+        onThemeChange={handleThemeChange}
+      />
+      <div id="content">
+        <Outlet />
+      </div>
+      <Footer />
     </ThemeProvider >
   );
 }
