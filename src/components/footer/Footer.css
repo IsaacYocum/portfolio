@@ -1,0 +1,19 @@
+#footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footerContent {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  max-width: 1280px
+}
+
+.flexLinks  {
+  flex: .33 1 auto;
+}
+
+.flexFiller  {
+  flex: 1 1 auto;
+}
