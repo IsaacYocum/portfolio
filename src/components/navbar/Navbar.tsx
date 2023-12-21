@@ -86,13 +86,17 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
     )
   }
 
+  let drawerStyle = {
+    backgroundColor: theme.palette.background.default
+  }
+
   let drawer = (
     <Drawer
       open={drawerOpen}
       onClose={() => toggleDrawer(false)}
     >
       {createAppBar(false)}
-      <div className='drawer'>
+      <div style={drawerStyle} className='drawer'>
         {createLinks(true)}
         <div style={{ marginTop: 'auto', textAlign: 'center', marginBottom: '10px' }}>
           <Divider />

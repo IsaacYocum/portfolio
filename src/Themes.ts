@@ -10,15 +10,21 @@ export enum ThemeName {
 
 declare module '@mui/material/styles' {
   interface Theme {
-    id: ThemeName
+    id: ThemeName,
   }
 
   interface ThemeOptions {
-    id: string
+    id: string,
   }
 
   interface TypeText {
-    header: string
+    header: string,
+    footer: string,
+  }
+
+  interface TypeBackground {
+    header: string,
+    footer: string,
   }
 }
 
@@ -36,10 +42,12 @@ let light = createTheme({
       dark: '#193a6f'
     },
     text: {
-      header: '#fff'
+      header: '#fff',
+      footer: '#fff'
     },
     background: {
-      default: '#f98125'
+      default: '#f98125',
+      footer: '#2c599d'
     },
     mode: 'light'
   }
@@ -54,7 +62,11 @@ let dark = createTheme({
   },
   palette: {
     text: {
-      header: '#fff'
+      header: '#fff',
+      footer: '#fff'
+    },
+    background: {
+      footer: '#363636'
     },
     mode: 'dark'
   }
@@ -89,7 +101,11 @@ let meme = createTheme({
   },
   palette: {
     text: {
-      header: '#fff'
+      header: '#fff',
+      footer: '#fff'
+    },
+    background: {
+      footer: '#363636'
     },
     mode: 'dark'
   }

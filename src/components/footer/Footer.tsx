@@ -1,5 +1,5 @@
 import { useTheme } from "@mui/material";
-import { Typography } from '@mui/material';
+import { Typography, Link as LinkBase } from '@mui/material';
 import { Link } from "react-router-dom";
 import routes from "../../routes/routes";
 import './Footer.css';
@@ -9,7 +9,12 @@ let Footer = () => {
   console.log(theme)
 
   let styles = {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.background.footer,
+    color: theme.palette.text.footer,
+  }
+
+  let linkStyles = {
+    color: theme.palette.text.footer,
   }
 
   return (
@@ -19,28 +24,29 @@ let Footer = () => {
     >
       <div className="footerContent">
         <div className="flexLinks">
-          <ul>Links</ul>
+          <ul className='footerHeader'>Site</ul>
           {routes[1].children?.map(route => (
             !route.path.includes('/') ?
               <ul className="linkItem">
-                <Link
+                <LinkBase
+                  style={linkStyles}
                   to={route.path}
+                  component={Link}
                 >
                   <Typography>{route.title}</Typography>
-                </Link>
+                </LinkBase>
               </ul>
               : null
           ))}
         </div>
         <div className="flexLinks">
-          <ul>Contact</ul>
-          <ul><a href="mailto:isyocum@gmail.com">Email</a></ul>
-          <ul><a href="https://github.com/IsaacYocum" target='_blank'>GitHub</a></ul>
-          <ul><a href="https://www.linkedin.com/in/isaacyocum/" target='_blank'>LinkedIn</a></ul>
+          <ul className='footerHeader'>Contact</ul>
+          <ul><LinkBase style={linkStyles} href="mailto:isyocum@gmail.com">Email</LinkBase></ul>
+          <ul><LinkBase style={linkStyles} href="https://github.com/IsaacYocum" target='_blank'>GitHub</LinkBase></ul>
+          <ul><LinkBase style={linkStyles} href="https://www.linkedin.com/in/isaacyocum/" target='_blank'>LinkedIn</LinkBase></ul>
         </div>
-
-        <div>
-          <ul>Projects</ul>
+        <div id="footerProjects">
+          <ul className='footerHeader'>Projects</ul>
           <div className="flexFiller">
             <div className="projectPlaceholder">Project placeholder</div>
             <div className="projectPlaceholder">Project placeholder</div>
@@ -50,8 +56,8 @@ let Footer = () => {
             <div className="projectPlaceholder">Project placeholder</div>
           </div>
         </div>
-      </div >
-    </footer >
+      </div>
+    </footer>
   )
 }
 
