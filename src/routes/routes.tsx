@@ -12,7 +12,11 @@ const PROJECTS_PATH = 'projects'
 let routes = [
   {
     path: "/",
-    element: <Navigate to="/portfolio" />  // Convenient redirect for localhost
+    element: <Navigate to="/portfolio/home" />  // Convenient redirect for localhost
+  },
+  {
+    path: "/portfolio",
+    element: <Navigate to="/portfolio/home" />  // Convenient redirect for localhost
   },
   {
     path: "/portfolio", // needed for github pages
