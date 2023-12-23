@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import Navbar from './components/navbar/Navbar';
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 import './App.css';
 import { CssBaseline } from '@mui/material';
 import { Theme, ThemeProvider } from '@mui/material/styles';
@@ -14,11 +14,41 @@ declare module '@mui/material/styles' {
   }
 }
 
+const REPO_NAMES_TO_DISPLAY = [
+  "portfolio",
+  "learn-lang-frontend",
+  "learn-lang-backend",
+  "VietnameseWords",
+  "VietnameseWordsAndroid",
+  "Pong",
+  "Snake",
+  "TicTacToe",
+  "lazyVimConfig"
+];
+
+type ContextType = { repos: Array<any> | null }
+
+export function useRepos() {
+  return useOutletContext<ContextType>();
+}
+
 type AppProps = { content?: React.ReactNode }
 
 let App: FC<AppProps> = () => {
-
   let [theme, setTheme] = useState<Theme>(Themes[0]);
+  let [repos, setRepos] = useState<any>([]);
+
+  useEffect(() => {
+    async function fetchRepos() {
+      let response = await fetch("https://api.github.com/users/IsaacYocum/repos");
+      let ghRepos: Array<any> = await response.json();
+      ghRepos = ghRepos.filter((repo: any) => REPO_NAMES_TO_DISPLAY.includes(repo.name));
+      console.log(ghRepos)
+      setRepos(ghRepos)
+    }
+
+    fetchRepos();
+  }, [])
 
   let handleThemeChange = (theme: Theme) => {
     setTheme(theme);
@@ -32,9 +62,9 @@ let App: FC<AppProps> = () => {
         onThemeChange={handleThemeChange}
       />
       <div id="content">
-        <Outlet />
+        <Outlet context={{ repos }} />
       </div>
-      <Footer />
+      <Footer projects={repos} />
     </ThemeProvider >
   );
 }
