@@ -9,7 +9,6 @@ type FooterProps = { projects?: Array<any> }
 
 let Footer: FC<FooterProps> = ({ projects }) => {
   let theme = useTheme();
-  console.log(theme)
 
   let styles = {
     backgroundColor: theme.palette.background.footer,

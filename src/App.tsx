@@ -43,7 +43,6 @@ let App: FC<AppProps> = () => {
       let response = await fetch("https://api.github.com/users/IsaacYocum/repos");
       let ghRepos: Array<any> = await response.json();
       ghRepos = ghRepos.filter((repo: any) => REPO_NAMES_TO_DISPLAY.includes(repo.name));
-      console.log(ghRepos)
       setRepos(ghRepos)
     }
 
