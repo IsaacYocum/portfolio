@@ -1,32 +1,11 @@
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useRepos } from "../../App";
 import './Home.css'
 
 let Home = () => {
-  let [repos, setRepos] = useState<any>([]);
-
-  const REPO_NAMES_TO_DISPLAY = [
-    "portfolio",
-    "learn-lang-frontend",
-    "learn-lang-backend",
-    "VietnameseWords",
-    "VietnameseWordsAndroid",
-    "Pong",
-    "Snake",
-    "TicTacToe",
-    "lazyVimConfig"
-  ];
-
-  useEffect(() => {
-    async function fetchRepos() {
-      let response = await fetch("https://api.github.com/users/IsaacYocum/repos");
-      response = await response.json();
-      console.log(response)
-      setRepos(response)
-    }
-
-    fetchRepos();
-  }, [])
+  let { repos } = useRepos();
+  console.log(repos)
 
   return (
     <div>
@@ -55,11 +34,9 @@ let Home = () => {
         <ul>Call to action</ul>
       </div>
       <div>
-        {repos.map((repo: any) => {
+        {repos?.map((repo: any) => {
           console.log(repo.name)
-          if (REPO_NAMES_TO_DISPLAY.includes(repo.name)) {
-            return (<ul><a href={repo.html_url} target='_blank'>{repo.name}</a></ul>)
-          }
+          return (<ul><a href={repo.html_url} target='_blank'>{repo.name}</a></ul>)
         })}
       </div>
     </div>

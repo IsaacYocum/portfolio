@@ -1,10 +1,13 @@
 import { useTheme } from "@mui/material";
 import { Typography, Link as LinkBase } from '@mui/material';
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import routes from "../../routes/routes";
 import './Footer.css';
 
-let Footer = () => {
+type FooterProps = { projects?: Array<any> }
+
+let Footer: FC<FooterProps> = ({ projects }) => {
   let theme = useTheme();
   console.log(theme)
 
@@ -48,12 +51,11 @@ let Footer = () => {
         <div id="footerProjects">
           <ul className='footerHeader'>Projects</ul>
           <div className="flexFiller">
-            <div className="projectPlaceholder">Project placeholder</div>
-            <div className="projectPlaceholder">Project placeholder</div>
-            <div className="projectPlaceholder">Project placeholder</div>
-            <div className="projectPlaceholder">Project placeholder</div>
-            <div className="projectPlaceholder">Project placeholder</div>
-            <div className="projectPlaceholder">Project placeholder</div>
+            {projects?.map(project => {
+              return (
+                <div className="projectPlaceholder">{project.name}</div>
+              )
+            })}
           </div>
         </div>
       </div>

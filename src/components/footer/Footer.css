@@ -39,6 +39,7 @@
   margin-right: 10px;
   margin-bottom: 10px;
   background-color: grey;
+  word-break: break-word;
 }
 
 .footerHeader {
