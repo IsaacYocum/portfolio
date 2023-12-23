@@ -76,7 +76,9 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {title}
           </Typography>
-          {children}
+          <div id='appbarLinks'>
+            {children}
+          </div>
         </Toolbar>
       </AppBar>
     )
