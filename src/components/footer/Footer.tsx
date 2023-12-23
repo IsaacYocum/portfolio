@@ -2,7 +2,7 @@ import { useTheme } from "@mui/material";
 import { Typography, Link as LinkBase } from '@mui/material';
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import routes from "../../routes/routes";
+import { VISIBLE_LINKS } from "../../routes/routes";
 import './Footer.css';
 
 type FooterProps = { projects?: Array<any> }
@@ -28,18 +28,16 @@ let Footer: FC<FooterProps> = ({ projects }) => {
       <div className="footerContent">
         <div className="flexLinks">
           <ul className='footerHeader'>Site</ul>
-          {routes[1].children?.map(route => (
-            !route.path.includes('/') ?
-              <ul className="linkItem">
-                <LinkBase
-                  style={linkStyles}
-                  to={route.path}
-                  component={Link}
-                >
-                  <Typography>{route.title}</Typography>
-                </LinkBase>
-              </ul>
-              : null
+          {VISIBLE_LINKS.map(route => (
+            <ul className="linkItem">
+              <LinkBase
+                style={linkStyles}
+                to={route.path}
+                component={Link}
+              >
+                <Typography>{route.title}</Typography>
+              </LinkBase>
+            </ul>
           ))}
         </div>
         <div className="flexLinks">

@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Button, Divider, Drawer, IconButton, Link as LinkBase, Toolbar, Typography } from '@mui/material';
 import { FC, ReactNode, useState } from 'react';
 import { Link } from "react-router-dom";
-import routes from '../../routes/routes';
+import { VISIBLE_LINKS } from '../../routes/routes';
 import './Navbar.css';
 import Themes, { ThemeName } from '../../Themes';
 import drawerIcon from '../../assets/drawer.svg'
@@ -38,23 +38,19 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
       linkSx = { color: theme.palette.primary.contrastText }
     }
 
-    let links = routes[1].children?.map(route => (
-      !route.path.includes('/') ?
-        <Button
-          key={route.path}
-          onClick={() => clickLink(route.title, fromDrawer)}
+    return VISIBLE_LINKS.map(route => (
+      <Button
+        key={route.path}
+        onClick={() => clickLink(route.title, fromDrawer)}
+      >
+        <LinkBase
+          to={route.path}
+          component={Link}
         >
-          <LinkBase
-            to={route.path}
-            component={Link}
-          >
-            <Typography {...linkSx}>{route.title}</Typography>
-          </LinkBase>
-        </Button>
-        : null
+          <Typography {...linkSx}>{route.title}</Typography>
+        </LinkBase>
+      </Button>
     ));
-
-    return links;
   }
 
   const memeDrawerIcon = (

@@ -9,40 +9,40 @@ import Visualizer from "../components/visualizer/Visualizer";
 
 const PROJECTS_PATH = 'projects'
 
+export const VISIBLE_LINKS = [
+  {
+    path: "/portfolio",
+    element: <Home />,
+    title: 'Home'
+  },
+  {
+    path: "about",
+    element: <About />,
+    title: 'About'
+  },
+  {
+    path: "resume",
+    element: <Resume />,
+    title: 'Resume'
+  },
+  {
+    path: PROJECTS_PATH,
+    element: <Projects />,
+    title: 'Projects',
+  },
+]
+
 let routes = [
   {
     path: "/",
-    element: <Navigate to="/portfolio/home" />  // Convenient redirect for localhost
-  },
-  {
-    path: "/portfolio",
-    element: <Navigate to="/portfolio/home" />  // Convenient redirect for localhost
+    element: <Navigate to="/portfolio" />  // Convenient redirect for localhost
   },
   {
     path: "/portfolio", // needed for github pages
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "home",
-        element: <Home />,
-        title: 'Home'
-      },
-      {
-        path: "about",
-        element: <About />,
-        title: 'About'
-      },
-      {
-        path: "resume",
-        element: <Resume />,
-        title: 'Resume'
-      },
-      {
-        path: PROJECTS_PATH,
-        element: <Projects />,
-        title: 'Projects',
-      },
+      ...VISIBLE_LINKS,
       {
         path: `${PROJECTS_PATH}/visualizer`,
         element: <Visualizer />,
