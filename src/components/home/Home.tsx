@@ -33,7 +33,7 @@ let Home = () => {
       </div>
       <div>
         {repos?.map((repo: any) => (
-          <ul>
+          <ul key={repo.name}>
             <a href={repo.html_url} target='_blank'>{repo.name}</a>
           </ul>
         ))}

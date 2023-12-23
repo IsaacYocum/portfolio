@@ -28,7 +28,10 @@ let Footer: FC<FooterProps> = ({ projects }) => {
         <div className="flexLinks">
           <ul className='footerHeader'>Site</ul>
           {VISIBLE_LINKS.map(route => (
-            <ul className="linkItem">
+            <ul
+              key={route.title}
+              className="linkItem"
+            >
               <LinkBase
                 style={linkStyles}
                 to={route.path}
@@ -48,11 +51,9 @@ let Footer: FC<FooterProps> = ({ projects }) => {
         <div id="footerProjects">
           <ul className='footerHeader'>Projects</ul>
           <div className="flexFiller">
-            {projects?.map(project => {
-              return (
-                <div className="projectPlaceholder">{project.name}</div>
-              )
-            })}
+            {projects?.map(project => (
+              <div key={project.name} className="projectPlaceholder">{project.name}</div>
+            ))}
           </div>
         </div>
       </div>
