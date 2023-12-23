@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
-import { useRepos } from "../../App";
+import { useRepoViewer } from "../../App";
 import './Home.css'
 
 let Home = () => {
-  let { repos } = useRepos();
+  let { repoViewer } = useRepoViewer();
 
   return (
     <div>
@@ -31,13 +31,8 @@ let Home = () => {
         <ul>Showcase skills</ul>
         <ul>Call to action</ul>
       </div>
-      <div>
-        {repos?.map((repo: any) => (
-          <ul key={repo.name}>
-            <a href={repo.html_url} target='_blank'>{repo.name}</a>
-          </ul>
-        ))}
-      </div>
+      <Typography variant="h4">Check out some of my work!</Typography>
+      {repoViewer}
     </div>
   )
 }

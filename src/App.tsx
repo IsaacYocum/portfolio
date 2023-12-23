@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Box } from '@mui/system';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
+import RepoViewer from './components/repo/RepoViewer';
 import { Outlet, useOutletContext } from "react-router-dom";
 import './App.css';
 import { CssBaseline } from '@mui/material';
@@ -26,9 +26,9 @@ const REPO_NAMES_TO_DISPLAY = [
   "lazyVimConfig"
 ];
 
-type ContextType = { repos: Array<any> | null }
+type ContextType = { repoViewer: React.ReactNode | null }
 
-export function useRepos() {
+export function useRepoViewer() {
   return useOutletContext<ContextType>();
 }
 
@@ -37,6 +37,11 @@ type AppProps = { content?: React.ReactNode }
 let App: FC<AppProps> = () => {
   let [theme, setTheme] = useState<Theme>(Themes[0]);
   let [repos, setRepos] = useState<any>([]);
+
+  const repoViewer = useMemo(() =>
+    <RepoViewer repos={repos} />,
+    [repos]
+  )
 
   useEffect(() => {
     async function fetchRepos() {
@@ -61,9 +66,9 @@ let App: FC<AppProps> = () => {
         onThemeChange={handleThemeChange}
       />
       <div id="content">
-        <Outlet context={{ repos }} />
+        <Outlet context={{ repoViewer }} />
       </div>
-      <Footer projects={repos} />
+      <Footer repoViewer={repoViewer} />
     </ThemeProvider >
   );
 }

@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { VISIBLE_LINKS } from "../../routes/routes";
 import './Footer.css';
 
-type FooterProps = { projects?: Array<any> }
+type FooterProps = { repoViewer?: React.ReactNode | null }
 
-let Footer: FC<FooterProps> = ({ projects }) => {
+let Footer: FC<FooterProps> = ({ repoViewer }) => {
   let theme = useTheme();
 
   let styles = {
@@ -50,11 +50,13 @@ let Footer: FC<FooterProps> = ({ projects }) => {
         </div>
         <div id="footerProjects">
           <ul className='footerHeader'>Projects</ul>
-          <div className="flexFiller">
-            {projects?.map(project => (
-              <div key={project.name} className="projectPlaceholder">{project.name}</div>
-            ))}
-          </div>
+          {repoViewer}
+          {/* <RepoViewer repos={repos} /> */}
+          {/* <div className="flexFiller"> */}
+          {/*   {repos?.map(repo => ( */}
+          {/*     <div key={repo.name} className="projectPlaceholder">{repo.name}</div> */}
+          {/*   ))} */}
+          {/* </div> */}
         </div>
       </div>
     </footer>

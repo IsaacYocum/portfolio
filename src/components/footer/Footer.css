@@ -17,12 +17,6 @@
   flex: 1 1 auto;
 }
 
-.flexFiller  {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 40px;
-}
-
 @media screen and (max-width: 30em) {
   #footerProjects  {
     display: none;
@@ -34,14 +28,6 @@
   width: max-content;
 }
 
-.projectPlaceholder {
-  width: 150px;
-  height: 100px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  background-color: grey;
-  word-break: break-word;
-}
 
 .footerHeader {
   text-transform: uppercase;
