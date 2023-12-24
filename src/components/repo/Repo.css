@@ -10,12 +10,10 @@
   margin-bottom: 10px;
   background-color: grey;
   word-break: break-word;
-}
-
-.cardContents {
   padding: 5px;
   max-width: 250px;
-  max-height: 120px;
+  min-height: 120px;
+  max-height: 150px;
   display: grid;
   grid-template-rows: 1fr min-content;
   grid-template-areas:
@@ -29,10 +27,8 @@
 
 .cardTitle {
   text-align: center;
-  padding-right: 3px;
-  padding-left: 3px;
-  margin: 0;
   font-size: large;
+  margin: 0;
 }
 
 .nameAndDescription {
