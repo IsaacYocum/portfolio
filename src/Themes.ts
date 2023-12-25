@@ -47,6 +47,7 @@ let light = createTheme({
     },
     background: {
       default: '#f98125',
+      header: '#2c599d',
       footer: '#2c599d'
     },
     mode: 'light'
@@ -66,6 +67,7 @@ let dark = createTheme({
       footer: '#fff'
     },
     background: {
+      header: '#282828',
       footer: '#363636'
     },
     mode: 'dark'
@@ -105,6 +107,7 @@ let meme = createTheme({
       footer: '#fff'
     },
     background: {
+      header: '#282828',
       footer: '#363636'
     },
     mode: 'dark'

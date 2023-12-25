@@ -8,12 +8,12 @@
   overflow-y: auto;
   margin-right: 10px;
   margin-bottom: 10px;
-  background-color: grey;
   word-break: break-word;
-  padding: 5px;
+  /* padding: 5px; */
   max-width: 250px;
   min-height: 120px;
   max-height: 150px;
+  border: 1px solid black;
   display: grid;
   grid-template-rows: 1fr min-content;
   grid-template-areas:
@@ -28,10 +28,16 @@
 .cardTitle {
   text-align: center;
   font-size: large;
+}
+
+.cardText {
   margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .nameAndDescription {
+  /* padding: 5px; */
   grid-area: nameAndDescription;
 }
 

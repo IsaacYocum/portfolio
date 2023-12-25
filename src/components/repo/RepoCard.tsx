@@ -11,7 +11,10 @@ let RepoCard: FC<RepoCardProps> = ({ repo }) => {
   let style = {
     cardTitle: {
       color: theme.palette.text.header,
-      fontWeight: 'bold',
+      backgroundColor: theme.palette.background.header,
+    },
+    card: {
+      backgroundColor: theme.palette.background.default,
     }
   }
 
@@ -20,10 +23,14 @@ let RepoCard: FC<RepoCardProps> = ({ repo }) => {
   }
 
   return (
-    <div key={repo.name} className="repoCard">
+    <div
+      key={repo.name}
+      className="repoCard"
+      style={style.card}
+    >
       <div className="nameAndDescription">
-        <p style={style.cardTitle} className="cardTitle">{repo.name}</p>
-        {repo.description}
+        <p style={style.cardTitle} className="cardTitle cardText">{repo.name}</p>
+        <p className="cardText">{repo.description}</p>
       </div>
       <div className="lanugageAndLink">
         <div className="lanugage">

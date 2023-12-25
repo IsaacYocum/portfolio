@@ -4,6 +4,7 @@ import About from '../components/about/About';
 import ErrorPage from '../components/ErrorPage';
 import Home from '../components/home/Home'
 import Projects from "../components/projects/Projects";
+import Reader from "../components/projects/Reader";
 import Resume from '../components/resume/Resume'
 import Visualizer from "../components/visualizer/Visualizer";
 
@@ -47,6 +48,11 @@ let routes = [
         path: `${PROJECTS_PATH}/visualizer`,
         element: <Visualizer />,
         title: 'Visualizer'
+      },
+      {
+        path: `${PROJECTS_PATH}/reader`,
+        element: <Reader />,
+        title: 'tictactoe'
       },
       {
         path: `${PROJECTS_PATH}/tictactoe`,

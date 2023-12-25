@@ -21,7 +21,6 @@ const REPO_NAMES_TO_DISPLAY = [
   "VietnameseWords",
   "VietnameseWordsAndroid",
   "Pong",
-  "Snake",
   "TicTacToe",
   "lazyVimConfig"
 ];

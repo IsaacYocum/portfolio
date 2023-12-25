@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import { useRepoViewer } from "../../App";
 import './Home.css'
 
@@ -31,7 +32,14 @@ let Home = () => {
         <ul>Showcase skills</ul>
         <ul>Call to action</ul>
       </div>
-      <Typography variant="h4">Check out some of my work!</Typography>
+      <Typography variant="h4">
+        Check out some of my&nbsp;
+        <Link to={'projects'}>Projects</Link>
+        !
+      </Typography>
+      <br />
+
+      <Typography variant="h4">Check out some of my GitHub Repos!</Typography>
       {repoViewer}
     </div>
   )
