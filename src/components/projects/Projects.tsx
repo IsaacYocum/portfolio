@@ -8,7 +8,7 @@ let Projects = () => {
     <div>
       <div>projects</div>
       {/* {repoViewer} */}
-      <Link to={'visualizer'}>Data structure and Algorithmns Visualizer</Link>
+      <Link to={'visualizer'}>Data structure and Algorithms Visualizer</Link>
       <br />
       <Link to={'Reader'}>Reader</Link>
     </div>
