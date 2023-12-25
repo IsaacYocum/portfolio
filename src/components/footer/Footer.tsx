@@ -50,13 +50,9 @@ let Footer: FC<FooterProps> = ({ repoViewer }) => {
         </div>
         <div id="footerProjects">
           <ul className='footerHeader'>Projects</ul>
-          {repoViewer}
-          {/* <RepoViewer repos={repos} /> */}
-          {/* <div className="flexFiller"> */}
-          {/*   {repos?.map(repo => ( */}
-          {/*     <div key={repo.name} className="projectPlaceholder">{repo.name}</div> */}
-          {/*   ))} */}
-          {/* </div> */}
+          <div className="footerRepoList">
+            {repoViewer}
+          </div>
         </div>
       </div>
     </footer>
