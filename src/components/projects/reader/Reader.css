@@ -1,0 +1,40 @@
+#reader {
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  align-content: center;
+}
+
+#readerSettings {
+  display: flex;
+  justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex: 0 0 35em;
+  /* width: 100%; */
+}
+
+#readerSettingsContent {
+  width: 100%; 
+}
+
+#readerSettingsButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+#readerDisplay {
+  word-wrap: anywhere;
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 55em) {
+  #reader  {
+    flex-direction: column;
+  }
+
+  #readerSettings {
+    flex: 0 0 20em;
+  }
+}

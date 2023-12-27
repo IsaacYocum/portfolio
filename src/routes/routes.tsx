@@ -4,7 +4,7 @@ import About from '../components/about/About';
 import ErrorPage from '../components/ErrorPage';
 import Home from '../components/home/Home'
 import Projects from "../components/projects/Projects";
-import Reader from "../components/projects/Reader";
+import Reader from "../components/projects/reader/Reader";
 import Resume from '../components/resume/Resume'
 import Visualizer from "../components/visualizer/Visualizer";
 
@@ -52,7 +52,7 @@ let routes = [
       {
         path: `${PROJECTS_PATH}/reader`,
         element: <Reader />,
-        title: 'tictactoe'
+        title: 'reader'
       },
       {
         path: `${PROJECTS_PATH}/tictactoe`,
