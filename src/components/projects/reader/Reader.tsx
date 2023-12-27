@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useInterval } from "../../../hooks/customHooks";
 import './Reader.css'
 
+let startTime: number = 0;
+
 let Reader = () => {
   let [text, setText] = useState(`Do I need to be liked? Absolutely not. I like to be liked. I enjoy being liked. I have to be liked. But it’s not like this compulsive need like my need to be praised.
-\nThat has sort of an oak - y afterbirth.
+\nThat has sort of an oak-y afterbirth.
 \nI learned a while back that if I do not text 911, people do not return my calls. Um, but people always return my calls because they think that something horrible has happened.
 \nAnd I knew exactly what to do. But in a much more real sense, I had no idea what to do.
     `);
@@ -14,11 +16,14 @@ let Reader = () => {
   let [time, setTime] = useState(0);
   let [timerDelay, setTimerDelay] = useState<number>(300)
   let [delay, setDelay] = useState<number | null>(null)
+  let [elapsedTime, setElapsedTime] = useState<number>(0)
+  let [expectedDuration, setExpectedDuration] = useState<number>(0)
 
   useInterval(() => {
     if (displayTextIndex < displayText?.length - 1) {
       setDisplayTextIndex(displayTextIndex + 1)
       setTime(time + 1)
+      setElapsedTime((Date.now() - startTime) / 1000)
     } else {
       handleStopTimer();
     }
@@ -33,17 +38,24 @@ let Reader = () => {
   }
 
   let handleStartTimer = () => {
+    startTime = Date.now();
     const words = text.match(/(\b[^\s]+\b)/g);
     if (words && words?.length > 0) {
       setDisplayText(words);
+      setExpectedDuration(parseFloat((words.length * (60 / timerDelay)).toFixed(2)))
     }
 
     setDelay((60 / timerDelay) * 1000);
   }
 
-  let handleStopTimer = () => setDelay(null);
+  let handleStopTimer = () => {
+    setDelay(null);
+  }
 
-  let handleTimerReset = () => {
+  let handleResetTimer = () => {
+    startTime = Date.now();
+    setExpectedDuration(0);
+    setElapsedTime(0);
     setTime(0);
     setDisplayText([]);
     setDisplayTextIndex(0);
@@ -90,7 +102,7 @@ let Reader = () => {
             </Button>
             <Button
               variant='contained'
-              onClick={handleTimerReset}
+              onClick={handleResetTimer}
             >
               Reset
             </Button>
@@ -98,7 +110,7 @@ let Reader = () => {
         </div>
       </div>
       <div id="readerDisplay">
-        <p>Words read: {time}</p>
+        <p>Words read: {time} | Elapsed Time: {elapsedTime}s | Expected duration: {expectedDuration}s</p>
         <Typography variant="h1">{displayText?.length !== 0 ? displayText[displayTextIndex] : "Click Start to begin"}</Typography>
       </div>
     </div>
