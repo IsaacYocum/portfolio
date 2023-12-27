@@ -25,10 +25,7 @@ let Reader = () => {
   }, delay);
 
   let handleTextChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(evt.target.value)
     setText(evt.target.value);
-
-    console.log(text)
   }
 
   let handleTimerDelayChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
