@@ -155,14 +155,35 @@ let Reader = () => {
         </div>
       </div>
       <div id="readerDisplay">
-        <p>Words read: {displayTextIndex <= 0 ? 0 : displayTextIndex + 1} / {displayText.length} </p>
-        <p>Running Time: {runningTime}s </p>
-        <p>Paused Time: {pausedTime / 1000}s </p>
-        <p>Elapsed Time: {elapsedTime}s </p>
-        <p>Expected duration: {expectedDuration}s</p>
+        <div id="statsDisplay">
+          <table>
+            <tbody>
+              <tr>
+                <td>Words read:</td>
+                <td>{displayTextIndex <= 0 ? 0 : displayTextIndex + 1} / {displayText.length}</td>
+              </tr>
+              <tr>
+                <td>Running Time:</td>
+                <td>{runningTime}s</td>
+              </tr>
+              <tr>
+                <td>Paused Time:</td>
+                <td>{pausedTime / 1000}s</td>
+              </tr>
+              <tr>
+                <td>Elapsed Time:</td>
+                <td>{elapsedTime}s</td>
+              </tr>
+              <tr>
+                <td>Expected duration:</td>
+                <td>{expectedDuration}s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <Typography variant="h1">{runningState === ReaderStatus.STOPPED ? "Click Start to begin" : displayText[displayTextIndex]}</Typography>
       </div>
-    </div>
+    </div >
   )
 }
 
