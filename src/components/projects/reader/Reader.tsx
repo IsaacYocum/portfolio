@@ -41,8 +41,8 @@ let Reader = () => {
     if (displayTextIndex < displayText?.length - 1) {
       setDisplayTextIndex(displayTextIndex + 1);
       let totalTime = Date.now() - startTime;
-      setRunningTime((totalTime - pausedTime) / 1000);
-      setElapsedTime(totalTime / 1000);
+      setRunningTime(parseFloat(((totalTime - pausedTime) / 1000).toFixed(2)));
+      setElapsedTime(parseFloat((totalTime / 1000).toFixed(2)));
     } else {
       handleStopTimer(ReaderStatus.STOPPED);
     }
@@ -58,13 +58,14 @@ let Reader = () => {
 
   let handleTimerDelayChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setTimerDelay(parseInt(evt.target.value));
+    setExpectedDuration(parseFloat((displayText.length * (60 / parseInt(evt.target.value))).toFixed(2)));
   }
 
   function getWords(textValue: string): string[] {
     const words = textValue.match(/(\b[^\s]+\b)/g);
     if (words && words?.length > 0) {
       setDisplayText(words);
-      setExpectedDuration(parseFloat((words.length * (60 / timerDelay)).toFixed(2)))
+      setExpectedDuration(parseFloat((words.length * (60 / timerDelay)).toFixed(2)));
       return words;
     }
 
