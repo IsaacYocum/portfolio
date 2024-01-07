@@ -1,4 +1,4 @@
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Button, Typography, Checkbox, FormControlLabel } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useInterval } from "../../../hooks/customHooks";
 import './Reader.css'
@@ -32,6 +32,7 @@ let Reader = () => {
   let [pausedTime, setPausedTime] = useState<number>(0)
   let [expectedDuration, setExpectedDuration] = useState<number>(0)
   let [runningState, setRunningState] = useState<ReaderStatus>(ReaderStatus.STOPPED)
+  let [showStats, setShowStats] = useState(true);
 
   useEffect(() => {
     getWords(STARTER_TEXT)
@@ -132,6 +133,15 @@ let Reader = () => {
           <br />
           <br />
           <div id="readerSettingsButtons">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={showStats}
+                  onClick={() => setShowStats(!showStats)}
+                />
+              }
+              label="Show Stats"
+            />
             <Button
               variant='contained'
               onClick={() => handleStartTimer()}
@@ -156,32 +166,34 @@ let Reader = () => {
         </div>
       </div>
       <div id="readerDisplay">
-        <div id="statsDisplay">
-          <table>
-            <tbody>
-              <tr>
-                <td>Words read:</td>
-                <td>{displayTextIndex <= 0 ? 0 : displayTextIndex + 1} / {displayText.length}</td>
-              </tr>
-              <tr>
-                <td>Running Time:</td>
-                <td>{runningTime}s</td>
-              </tr>
-              <tr>
-                <td>Paused Time:</td>
-                <td>{pausedTime / 1000}s</td>
-              </tr>
-              <tr>
-                <td>Elapsed Time:</td>
-                <td>{elapsedTime}s</td>
-              </tr>
-              <tr>
-                <td>Expected duration:</td>
-                <td>{expectedDuration}s</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        {showStats ?
+          <div id="statsDisplay">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Words read:</td>
+                  <td>{displayTextIndex <= 0 ? 0 : displayTextIndex + 1} / {displayText.length}</td>
+                </tr>
+                <tr>
+                  <td>Running Time:</td>
+                  <td>{runningTime}s</td>
+                </tr>
+                <tr>
+                  <td>Paused Time:</td>
+                  <td>{pausedTime / 1000}s</td>
+                </tr>
+                <tr>
+                  <td>Elapsed Time:</td>
+                  <td>{elapsedTime}s</td>
+                </tr>
+                <tr>
+                  <td>Expected duration:</td>
+                  <td>{expectedDuration}s</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          : null}
         <Typography variant="h1">{runningState === ReaderStatus.STOPPED ? "Click Start to begin" : displayText[displayTextIndex]}</Typography>
       </div>
     </div >
