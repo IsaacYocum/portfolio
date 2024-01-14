@@ -5,6 +5,7 @@ import ErrorPage from '../components/ErrorPage';
 import Home from '../components/home/Home'
 import Projects from "../components/projects/Projects";
 import Reader from "../components/projects/reader/Reader";
+import SoundGenerator from "../components/projects/soundGenerator/SoundGenerator";
 import Resume from '../components/resume/Resume'
 import Visualizer from "../components/visualizer/Visualizer";
 
@@ -55,11 +56,15 @@ let routes = [
         title: 'reader'
       },
       {
+        path: `${PROJECTS_PATH}/soundGenerator`,
+        element: <SoundGenerator />,
+        title: 'SoundGenerator'
+      },
+      {
         path: `${PROJECTS_PATH}/tictactoe`,
         element: <Visualizer />,
         title: 'tictactoe'
       }
-
     ]
   }
 ]
