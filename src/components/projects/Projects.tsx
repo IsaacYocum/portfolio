@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
-import { useRepoViewer } from "../../App";
 
 let Projects = () => {
-  // let { repoViewer } = useRepoViewer();
-
   return (
     <div>
-      <div>projects</div>
-      {/* {repoViewer} */}
+      <h2>Projects</h2>
+      <p>Check out these random project ideas I've mad when the inspriation hits!</p>
       <Link to={'visualizer'}>Data structures and Algorithms Visualizer</Link>
       <br />
       <Link to={'Reader'}>Reader</Link>
+      <br />
+      <Link to={'soundGenerator'}>Sound Generator</Link>
+      <br />
+      <Link to={'pomodoro'}>Pomodoro</Link>
     </div>
   )
 }

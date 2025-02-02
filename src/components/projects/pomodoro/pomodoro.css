@@ -1,0 +1,25 @@
+.pomodoro {
+    background-color: aliceblue;
+    height: 400px;
+    width: 600px;
+    flex-direction: row;
+    margin: auto;
+}
+
+.centered {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.headers {
+    gap: 20px;
+}
+
+.timer {
+}
+
+.buttons {
+    gap: 20px;
+}
+

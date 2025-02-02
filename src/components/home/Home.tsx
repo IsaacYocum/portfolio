@@ -5,6 +5,7 @@ import './Home.css'
 
 let Home = () => {
   let { repoViewer } = useRepoViewer();
+  console.log('home render')
 
   return (
     <div>
