@@ -1,62 +1,110 @@
-import { FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Slider } from "@mui/material";
-import { ChangeEvent } from "react";
+import { Button, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Slider, Typography, useTheme } from "@mui/material";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 const DEFAULT_FREQUENCY = 420;
 const DEFAULT_VOL = 10;
 const DEFAULT_TYPE = "sine";
 
-const audioContext = new AudioContext();
-let osc = audioContext.createOscillator();
-let vol = audioContext.createGain();
-osc.frequency.value = DEFAULT_FREQUENCY;
-osc.type = DEFAULT_TYPE;
-vol.gain.value = DEFAULT_VOL / 100;
-osc.connect(vol)
-vol.connect(audioContext.destination)
-osc.detune.value = 100;
+const styles = {
+  buttons: {
+    display: 'flex',
+    gap: '10px'
+  },
+  formGroup: {
+    paddingTop: '20px'
+  }
+}
 
-console.log('render outside SoundGenerator')
+const SoundGenerator = () => {
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const [audioContextStarted, setAudioContextStarted] = useState(false);
 
-let SoundGenerator = () => {
-  console.log('render inside SoundGenerator')
-  let startSound = async () => {
-    if (osc.context.state === 'running') {
-      vol.connect(audioContext.destination)
-    } else {
-      osc.start(0)
+  const osc = useRef<OscillatorNode | null>(null);
+  const oscStarted = useRef(false);
+
+  const vol = useRef<GainNode | null>(null);
+
+  useEffect(() => {
+    if (!audioContextRef.current) {
+      audioContextRef.current = new AudioContext();
+      osc.current = audioContextRef.current.createOscillator();
+      vol.current = audioContextRef.current.createGain();
+      osc.current.frequency.value = DEFAULT_FREQUENCY;
+      osc.current.type = DEFAULT_TYPE;
+      vol.current.gain.value = DEFAULT_VOL / 100;
+      osc.current.connect(vol.current)
+      vol.current.connect(audioContextRef.current.destination)
+      osc.current.detune.value = 100;
+    }
+
+    return () => {
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+        audioContextRef.current = null;
+        osc.current = null;
+        vol.current = null;
+        oscStarted.current = false;
+      }
+    };
+  }, [])
+
+  const startSound = () => {
+    if (osc.current && !oscStarted.current) {
+      osc.current.start()
+      oscStarted.current = true;
+    }
+
+    if (audioContextRef.current && audioContextRef.current?.state !== 'running') {
+      audioContextRef.current.resume()
+    }
+    setAudioContextStarted(true);
+  }
+
+  const stopSound = () => {
+    if (audioContextRef.current?.state === 'running') {
+      audioContextRef.current.suspend()
+      setAudioContextStarted(false);
     }
   }
 
-  let stopSound = async () => {
-    vol.disconnect(audioContext.destination)
+  const handleFrequencyChange = (_: Event, newFrequency: number | number[]) => {
+    if (osc.current) {
+      osc.current.frequency.value = newFrequency as number;
+    }
   }
 
-  let handleFrequencyChange = (_: Event, newFrequency: number | number[]) => {
-    osc.frequency.value = newFrequency as number;
+  const handleVolumeChange = (_: Event, newVolume: number | number[]) => {
+    if (vol.current) {
+      vol.current.gain.value = newVolume as number / 100;
+    }
   }
 
-  let handleVolumeChange = (_: Event, newVolume: number | number[]) => {
-    vol.gain.value = newVolume as number / 100;
-  }
-
-  let handleTypeChange = (_: ChangeEvent<HTMLInputElement>, newType: string) => {
-    osc.type = newType as OscillatorType;
+  const handleTypeChange = (_: ChangeEvent<HTMLInputElement>, newType: string) => {
+    if (osc.current) {
+      osc.current.type = newType as OscillatorType;
+    }
   }
 
   return (
-    <div>
-      <div>Sound Generator</div>
-      <button
-        onClick={startSound}
-      >
-        Start
-      </button>
-      <button
-        onClick={stopSound}
-      >
-        Stop
-      </button>
-      <div>Frequency (hz)</div>
+    <>
+      <Typography variant="h3">Sound Generator</Typography>
+      <div style={styles.buttons}>
+        <Button
+          variant="outlined"
+          onClick={startSound}
+          disabled={audioContextStarted}
+        >
+          Start
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={stopSound}
+          disabled={!audioContextStarted}
+        >
+          Stop
+        </Button>
+      </div>
+      <p>Frequency (hz)</p>
       <Slider
         defaultValue={DEFAULT_FREQUENCY}
         getAriaValueText={(f: number) => `${f}hz`}
@@ -75,7 +123,7 @@ let SoundGenerator = () => {
         max={20000}
         onChange={handleFrequencyChange}
       />
-      <div>Volume</div>
+      <p>Volume</p>
       <Slider
         defaultValue={DEFAULT_VOL}
         getAriaValueText={(v: number) => `${v}%`}
@@ -94,7 +142,7 @@ let SoundGenerator = () => {
         max={100}
         onChange={handleVolumeChange}
       />
-      <FormGroup>
+      <FormGroup style={styles.formGroup}>
         <FormLabel id="wave-type-label">Wave Type</FormLabel>
         <RadioGroup
           aria-labelledby="wave-type-label"
@@ -107,7 +155,7 @@ let SoundGenerator = () => {
           <FormControlLabel value="triangle" control={<Radio />} label="Triangle" />
         </RadioGroup>
       </FormGroup>
-    </div>
+    </>
   )
 }
 
