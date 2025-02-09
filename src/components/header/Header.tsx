@@ -1,20 +1,41 @@
 import { MenuItem, Select, Theme, SelectChangeEvent, useTheme, InputLabel, FormControl, SvgIcon, Icon, Menu } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Button, Divider, Drawer, IconButton, Link as LinkBase, Toolbar, Typography } from '@mui/material';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useMemo, useState } from 'react';
 import { Link } from "react-router-dom";
 import { VISIBLE_LINKS } from '../../routes/routes';
-import './Navbar.css';
+import './Header.css';
 import Themes, { ThemeName } from '../../Themes';
 import drawerIcon from '../../assets/drawer.svg'
+import { lightBlue } from '@mui/material/colors';
 
 interface AppProps {
-  themeSelected: Theme,
   onThemeChange: (theme: Theme) => void;
 }
 
-let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
+const Header: FC<AppProps> = ({ onThemeChange }) => {
   let theme = useTheme()
+  let styles = useMemo(() => ({
+    header: {
+    },
+    drawer: {
+      backgroundColor: theme.palette.background.default,
+      color: theme.palette.text.header,
+      display: 'flex',
+      flexDirection: 'column' as 'column',
+      flexGrow: 1,
+      paddingLeft: 20,
+      paddingRight: 20,
+      zIndex: 3
+    },
+    threeColumnGrid: {
+      display: 'grid',
+      gridAutoRows: '1fr',
+      gridTemplateColumns: '1fr 1fr',
+      alignItems: 'center'
+    }
+  }), [theme])
+
   let [title, setTitle] = useState('Home')
   let [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -37,6 +58,7 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
     if (theme.palette.mode === 'light' && !fromDrawer) {
       linkSx = { color: theme.palette.primary.contrastText }
     }
+      // linkSx = { color: lightBlue[100] }
 
     return VISIBLE_LINKS.map(route => (
       <Button
@@ -47,7 +69,7 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
           to={route.path}
           component={Link}
         >
-          <Typography {...linkSx}>{route.title}</Typography>
+          <p >{route.title}</p>
         </LinkBase>
       </Button>
     ));
@@ -61,12 +83,11 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
 
   let createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
     return (
-      <AppBar position='static'>
+      <AppBar position='static' style={styles.header}>
         <Toolbar variant="dense">
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
             onClick={() => toggleDrawer(openDrawer)}
@@ -84,17 +105,13 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
     )
   }
 
-  let drawerStyle = {
-    backgroundColor: theme.palette.background.default
-  }
-
   let drawer = (
     <Drawer
       open={drawerOpen}
       onClose={() => toggleDrawer(false)}
     >
       {createAppBar(false)}
-      <div style={drawerStyle} className='drawer'>
+      <div style={styles.drawer}>
         {createLinks(true)}
         <div style={{ marginTop: 'auto', textAlign: 'center', marginBottom: '10px' }}>
           <Divider />
@@ -104,7 +121,7 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
               id='themeSelector'
               labelId='themeSelector'
               label='Theme'
-              value={themeSelected.id}
+              value={theme.id}
               onChange={handleThemeChange}
             >
               {Themes.map(theme => <MenuItem key={theme.id} value={theme.id}>{theme.id}</MenuItem>)}
@@ -116,11 +133,11 @@ let Navbar: FC<AppProps> = ({ themeSelected, onThemeChange }) => {
   )
 
   return (
-    <div id="navbar">
+    <>
       {drawer}
       {createAppBar(true, createLinks())}
-    </div>
+    </>
   )
 }
 
-export default Navbar;
+export default Header;

@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import { useRepoViewer } from "../../App";
 import './Home.css'
 
-let Home = () => {
-  let { repoViewer } = useRepoViewer();
+const Home = () => {
+  const { repoViewer } = useRepoViewer();
   console.log('home render')
 
   return (
-    <div>
-      <Typography variant="h1">Curiosity Indulged</Typography>
+    <>
+      <Typography variant="h1">Isaac Yocum</Typography>
+      <Typography variant="h3">Welcome to my site! Please take a look around.</Typography>
+      <br />
+      <Typography variant="h2" sx={{color: 'teal'}}>{'$'} whoami?</Typography>
       <div className="outer-headings">
         <h1>
           <div className="inner-headings">
@@ -22,30 +25,23 @@ let Home = () => {
           </div>
         </h1>
       </div>
+      <Typography variant="h1">Curiosity Indulged</Typography>
       <blockquote className="quote">
         "That looks cool, let me try"
         <figcaption>
           <cite>Isaac</cite>
         </figcaption>
       </blockquote>
-      <div>
-        TODO
-        <ul>Showcase skills</ul>
-        <ul>Call to action</ul>
-      </div>
       <Typography variant="h4">
-        Check out some of my&nbsp;
-        <Link to={'projects'}>Projects</Link>
-        !
+        I use this site to conduct <Link to={'projects'}>Experiments</Link>.
       </Typography>
       <br />
 
-      <Typography variant="h4">Check out some of my GitHub Repos!</Typography>
+      <Typography variant="h4">Check out some of my <Link to={'projects'}>GitHub Repos!</Link></Typography>
+      <br />
       {repoViewer}
-    </div>
+    </>
   )
 }
 
-
 export default Home;
-
