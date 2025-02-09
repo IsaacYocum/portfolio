@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material"
+import { createTheme } from "@mui/material/styles"
 import background from './assets/background.jpg'
 import road from './assets/road.png'
 
@@ -62,14 +62,12 @@ let dark = createTheme({
     ].join(','),
   },
   palette: {
-    text: {
-      header: '#fff',
-      footer: '#fff'
-    },
-    background: {
-      header: '#282828',
-      footer: '#363636'
-    },
+      primary: {
+        main: '#3f51b5',
+      },
+      secondary: {
+        main: '#f50057',
+      },
     mode: 'dark'
   }
 })

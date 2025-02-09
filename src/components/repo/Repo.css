@@ -13,7 +13,7 @@
   max-width: 250px;
   min-height: 120px;
   max-height: 150px;
-  border: 1px solid black;
+  border: 1px solid;
   display: grid;
   grid-template-rows: 1fr min-content;
   grid-template-areas:
@@ -48,7 +48,7 @@
     'language ghLink';
   align-items: center;
   justify-items: center;
-  border-top: 1px solid black;
+  border-top: 1px solid;
 }
 
 .language {

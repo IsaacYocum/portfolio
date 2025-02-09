@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
-import Navbar from './components/navbar/Navbar';
 import RepoViewer from './components/repo/RepoViewer';
 import { Outlet, useOutletContext } from "react-router-dom";
 import './App.css';
@@ -7,6 +6,7 @@ import { CssBaseline } from '@mui/material';
 import { Theme, ThemeProvider } from '@mui/material/styles';
 import Themes from './Themes';
 import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
 
 declare module '@mui/material/styles' {
   interface TypeText {
@@ -34,7 +34,7 @@ export function useRepoViewer() {
 type AppProps = { content?: React.ReactNode }
 
 let App: FC<AppProps> = () => {
-  let [theme, setTheme] = useState<Theme>(Themes[0]);
+  let [theme, setTheme] = useState<Theme>(Themes[1]);
   let [repos, setRepos] = useState<any>([]);
 
   const repoViewer = useMemo(() =>
@@ -60,8 +60,7 @@ let App: FC<AppProps> = () => {
   return (
     <ThemeProvider theme={theme} >
       <CssBaseline />
-      <Navbar
-        themeSelected={theme}
+      <Header
         onThemeChange={handleThemeChange}
       />
       <div id="content">

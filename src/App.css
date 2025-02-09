@@ -2,10 +2,7 @@
   flex: 1;
   display: grid;
   width: auto;
-  max-width: 1280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-right: 50px;
-  margin-left: 50px;
+  /* max-width: 1280px; */
+  margin: 1.5em;
 }
  
