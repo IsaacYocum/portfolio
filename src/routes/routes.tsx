@@ -9,6 +9,7 @@ import SoundGenerator from "../components/projects/soundGenerator/SoundGenerator
 import Resume from '../components/resume/Resume'
 import Visualizer from "../components/visualizer/Visualizer";
 import Pomodoro from "../components/projects/pomodoro/pomodoro";
+import Fetching from "../components/projects/fetching/fetching";
 
 const PROJECTS_PATH = 'projects'
 
@@ -70,6 +71,11 @@ let routes = [
         path: `${PROJECTS_PATH}/pomodoro`,
         element: <Pomodoro />,
         title: 'pomodoro'
+      },
+      {
+        path: `${PROJECTS_PATH}/fetching`,
+        element: <Fetching />,
+        title: 'fetching'
       }
     ]
   }

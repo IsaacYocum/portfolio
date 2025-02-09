@@ -12,6 +12,8 @@ let Projects = () => {
       <Link to={'soundGenerator'}>Sound Generator</Link>
       <br />
       <Link to={'pomodoro'}>Pomodoro</Link>
+      <br />
+      <Link to={'fetching'}>Fetching</Link>
     </div>
   )
 }
