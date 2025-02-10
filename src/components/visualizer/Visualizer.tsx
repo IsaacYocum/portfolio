@@ -72,11 +72,9 @@ let Visualizer = () => {
     binaryTree
   ]
 
-
   let [min, setMin] = useState(0);
   let [max, setMax] = useState(0);
   let [curr, setCurr] = useState(0);
-  let [error, setError] = useState('');
   let [dataStructure, setDataStructure] = useState<DataStructure>(array);
   let [algorithm, setAlgorithm] = useState<Algorithm>(array.algorithms[0]);
 
@@ -255,7 +253,6 @@ let Visualizer = () => {
           <Button
             onClick={handleStart}
             variant='contained'
-            disabled={error.length > 0}
           >
             Start
           </Button>

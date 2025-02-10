@@ -1,4 +1,4 @@
-import { Button, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Slider, Typography, useTheme } from "@mui/material";
+import { Button, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Slider, Typography } from "@mui/material";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 const DEFAULT_FREQUENCY = 420;
