@@ -2,17 +2,17 @@ import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useRepoViewer } from "../../App";
 import './Home.css'
+import About from "../about/About";
 
 const Home = () => {
   const { repoViewer } = useRepoViewer();
-  console.log('home render')
 
   return (
     <>
-      <Typography variant="h1">Isaac Yocum</Typography>
+      <Typography variant="h2">Hello, I am Isaac Yocum</Typography>
       <Typography variant="h3">Welcome to my site! Please take a look around.</Typography>
       <br />
-      <Typography variant="h2" sx={{color: 'teal'}}>{'$'} whoami?</Typography>
+      <Typography variant="h3" sx={{color: 'teal'}}>{'$'} whoami?</Typography>
       <div className="outer-headings">
         <h1>
           <div className="inner-headings">
@@ -25,7 +25,8 @@ const Home = () => {
           </div>
         </h1>
       </div>
-      <Typography variant="h1">Curiosity Indulged</Typography>
+      <About />
+      <Typography variant="h3">Curiosity Indulged</Typography>
       <blockquote className="quote">
         "That looks cool, let me try"
         <figcaption>
