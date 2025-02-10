@@ -3,25 +3,25 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 h1 {
-  font-size: 45px;
+  /* font-size: 45px; */
 }
 
 .inner-headings {
-  border: 0px solid #ddd;
-  height: 50px;
-  line-height: 50px;
-  font-size: 45px;
+  /* border: 0px solid #ddd; */
+  height: 40px;
+  line-height: 40px;
+  font-size: 35px;
   text-transform: uppercase;
   overflow: hidden;
 }
 
 .inner-headings span {
   position: relative;
-  color: crimson;
+  /* color: crimson; */
   animation: animation 10s ease infinite;
 }
 
@@ -38,21 +38,21 @@ h1 {
     top: 0;
   }
   25% {
-    top: -50px;
+    top: -40px;
   }
   45% {
-    top: -50px;
+    top: -40px;
   }
   50% {
-    top: -100px;
+    top: -80px;
   }
   70% {
-    top: -100px;
+    top: -80px;
   }
   75% {
-    top: -150px;
+    top: -120px;
   }
   95% {
-    top: -150px;
+    top: -120px;
   }
 }

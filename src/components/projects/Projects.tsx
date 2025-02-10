@@ -1,10 +1,11 @@
+import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 let Projects = () => {
   return (
     <div>
-      <h2>Projects</h2>
-      <p>Check out these random project ideas I've mad when the inspriation hits!</p>
+      <Typography variant="h3">Projects</Typography>
+      <p>Check out these project ideas I've made when the inspriation hits!</p>
       <Link to={'visualizer'}>Data structures and Algorithms Visualizer</Link>
       <br />
       <Link to={'Reader'}>Reader</Link>
