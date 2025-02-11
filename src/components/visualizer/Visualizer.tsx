@@ -3,7 +3,7 @@ import { useState } from "react";
 import './Visualizer.css'
 import CSS from 'csstype'
 
-let Visualizer = () => {
+const Visualizer = () => {
   const theme = useTheme();
   const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   let [target, setTarget] = useState<number>(testArray[1]);
@@ -23,7 +23,7 @@ let Visualizer = () => {
     targetRequired: boolean
   }
 
-  let iterateArray: Algorithm = {
+  const iterateArray: Algorithm = {
     id: 'iterate',
     label: 'Iterate',
     value: 'iterate',
@@ -31,15 +31,15 @@ let Visualizer = () => {
     targetRequired: false,
   }
 
-  let binarySearchAlg: Algorithm = {
+  const binarySearchAlg: Algorithm = {
     id: 'binarySearch',
     label: 'Binary Search',
     value: 'binarySearch',
-    run: (_, tar?: number) => binarySearch(testArray, target || 0),
+    run: (_, tar?: number) => binarySearch(target || 0, testArray),
     targetRequired: true,
   }
 
-  let binaryTreeSearch: Algorithm = {
+  const binaryTreeSearch: Algorithm = {
     id: 'binaryTreeSearch',
     label: 'Binary Tree Search',
     value: 'binaryTreeSearch',
@@ -48,7 +48,7 @@ let Visualizer = () => {
   }
 
 
-  let array: DataStructure = {
+  const array: DataStructure = {
     id: 'array',
     label: 'Array',
     value: 'array',
@@ -58,7 +58,7 @@ let Visualizer = () => {
     ]
   }
 
-  let binaryTree: DataStructure = {
+  const binaryTree: DataStructure = {
     id: 'binaryTree',
     label: 'Binary Tree',
     value: 'Binary Tree',
@@ -67,64 +67,66 @@ let Visualizer = () => {
     ]
   }
 
-  let dataStructures = [
+  const dataStructures = [
     array,
     binaryTree
   ]
 
-  let [min, setMin] = useState(0);
-  let [max, setMax] = useState(0);
-  let [curr, setCurr] = useState(0);
-  let [dataStructure, setDataStructure] = useState<DataStructure>(array);
-  let [algorithm, setAlgorithm] = useState<Algorithm>(array.algorithms[0]);
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(0);
+  const [curr, setCurr] = useState(0);
+  const [dataStructure, setDataStructure] = useState<DataStructure>(array);
+  const [algorithm, setAlgorithm] = useState<Algorithm>(array.algorithms[0]);
 
   const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
 
-  let handleStart = () => {
-    //iterate(testArray);
+  const handleStart = () => {
     setCurr(0);
     setMin(0);
     setMax(0);
     algorithm.run()
   };
 
-  async function iterate(arr: Array<number>) {
-    for (let i = 0; i < arr.length; i++) {
-      setCurr(arr[i]);
-      await delay(1000);
-    }
+  function iterate(arr: Array<number>) {
+    (async () => {
+      for (const element of arr) {
+        setCurr(element);
+        await delay(1000);
+      }
+    })()
   };
 
-  let binarySearch = async (arr: Array<number> = testArray, tar: number) => {
-    let beg = 0;
-    let end = arr.length - 1;
-    let mid = Math.floor((end + beg) / 2);
-    setCurr(arr[mid]);
-    setMin(arr[beg]);
-    setMax(arr[end]);
-
-    while (beg <= end) {
+  const binarySearch =  (tar: number, arr: Array<number> = testArray) => {
+    (async () => {
+      let beg = 0;
+      let end = arr.length - 1;
       let mid = Math.floor((end + beg) / 2);
       setCurr(arr[mid]);
-      await delay(2000);
-      if (arr[mid] === tar) break;
+      setMin(arr[beg]);
+      setMax(arr[end]);
 
-      if (arr[mid] < tar) {
-        beg = mid + 1;
-        setMin(arr[beg]);
+      while (beg <= end) {
+        let mid = Math.floor((end + beg) / 2);
+        setCurr(arr[mid]);
         await delay(2000);
-      }
+        if (arr[mid] === tar) break;
 
-      if (arr[mid] > tar) {
-        end = mid - 1;
-        setMax(arr[end]);
-        await delay(2000);
-      }
+        if (arr[mid] < tar) {
+          beg = mid + 1;
+          setMin(arr[beg]);
+          await delay(2000);
+        }
 
-    }
+        if (arr[mid] > tar) {
+          end = mid - 1;
+          setMax(arr[end]);
+          await delay(2000);
+        }
+      }
+    })()
   };
 
-  let getNodeStyle = (i: number) => {
+  const getNodeStyle = (i: number) => {
     let colors = []
     let style: CSS.Properties = {
       height: '50px',
@@ -173,38 +175,18 @@ let Visualizer = () => {
     return style;
   }
 
-  // let handleChangeTarget = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const re = /^[0-9\b]+$/;
-  //   let value = event.target.value;
-  //
-  //   if (value === '') {
-  //     setTarget(value)
-  //     setError('Must be a number')
-  //   } else if (re.test(value)) {
-  //     if (testArray.includes(parseInt(value))) {
-  //       setTarget(value)
-  //       setError('')
-  //     } else {
-  //       setTarget(value)
-  //       setError('Target must be in array')
-  //     }
-  //   } else {
-  //     setError('Must be a number')
-  //   }
-  // }
-
-  let handleDataStructureSelectChange = (event: SelectChangeEvent<string>) => {
+  const handleDataStructureSelectChange = (event: SelectChangeEvent<string>) => {
     let ds = dataStructures.find(d => d.value === event.target.value) || array;
     setDataStructure(ds);
     setAlgorithm(ds?.algorithms[0]);
   }
 
-  let handleAlgorithmSelectChange = (event: SelectChangeEvent<string>) => {
+  const handleAlgorithmSelectChange = (event: SelectChangeEvent<string>) => {
     let ag = dataStructure?.algorithms.find(a => a.value === event.target.value) || dataStructure?.algorithms[0];
     setAlgorithm(ag);
   }
 
-  let handleSelectTargetChange = (event: SelectChangeEvent<number>) => {
+  const handleSelectTargetChange = (event: SelectChangeEvent<number>) => {
     let value = event.target.value;
     setTarget(value as number);
   }

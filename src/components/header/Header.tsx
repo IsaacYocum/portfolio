@@ -1,13 +1,21 @@
-import { MenuItem, Select, Theme, SelectChangeEvent, useTheme, InputLabel, FormControl, SvgIcon, Icon, Menu } from '@mui/material';
+import { MenuItem, Select, Theme, SelectChangeEvent, useTheme, InputLabel, FormControl, Icon, AppBar, Button, Divider, IconButton, Link as LinkBase, Toolbar, Typography, Drawer, styled } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Button, Divider, Drawer, IconButton, Link as LinkBase, Toolbar, Typography } from '@mui/material';
-import { FC, ReactNode, useMemo, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { Link } from "react-router-dom";
 import { VISIBLE_LINKS } from '../../routes/routes';
 import './Header.css';
 import Themes, { ThemeName } from '../../Themes';
 import drawerIcon from '../../assets/drawer.svg'
-import { lightBlue } from '@mui/material/colors';
+
+const DrawerContents = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
+  paddingLeft: 20,
+  paddingRight: 20,
+  zIndex: 3
+}))
 
 interface AppProps {
   onThemeChange: (theme: Theme) => void;
@@ -15,24 +23,6 @@ interface AppProps {
 
 const Header: FC<AppProps> = ({ onThemeChange }) => {
   let theme = useTheme()
-  let styles = useMemo(() => ({
-    drawer: {
-      backgroundColor: theme.palette.background.default,
-      // color: theme.palette.text.header,
-      display: 'flex',
-      flexDirection: 'column' as 'column',
-      flexGrow: 1,
-      paddingLeft: 20,
-      paddingRight: 20,
-      zIndex: 3
-    },
-    threeColumnGrid: {
-      display: 'grid',
-      gridAutoRows: '1fr',
-      gridTemplateColumns: '1fr 1fr',
-      alignItems: 'center'
-    }
-  }), [theme])
 
   let [title, setTitle] = useState('Home')
   let [drawerOpen, setDrawerOpen] = useState(false)
@@ -52,11 +42,6 @@ const Header: FC<AppProps> = ({ onThemeChange }) => {
   }
 
   function createLinks(fromDrawer = false) {
-    let linkSx: any = undefined;
-    if (theme.palette.mode === 'light' && !fromDrawer) {
-      linkSx = { color: theme.palette.primary.contrastText }
-    }
-      // linkSx = { color: lightBlue[100] }
 
     return VISIBLE_LINKS.map(route => (
       <Button
@@ -75,11 +60,11 @@ const Header: FC<AppProps> = ({ onThemeChange }) => {
 
   const memeDrawerIcon = (
     <Icon>
-      <img src={drawerIcon} height={20} width={28} style={{ transform: drawerOpen ? 'scale(-1, -1)' : 'none' }} />
+      <img src={drawerIcon} alt='Pixel Road' height={20} width={28} style={{ transform: drawerOpen ? 'scale(-1, -1)' : 'none' }} />
     </Icon>
   )
 
-  let createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
+  const createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
     return (
       <AppBar position='static'>
         <Toolbar variant="dense">
@@ -103,13 +88,13 @@ const Header: FC<AppProps> = ({ onThemeChange }) => {
     )
   }
 
-  let drawer = (
+  const drawer = (
     <Drawer
       open={drawerOpen}
       onClose={() => toggleDrawer(false)}
     >
       {createAppBar(false)}
-      <div style={styles.drawer}>
+      <DrawerContents>
         {createLinks(true)}
         <div style={{ marginTop: 'auto', textAlign: 'center', marginBottom: '10px' }}>
           <Divider />
@@ -126,8 +111,8 @@ const Header: FC<AppProps> = ({ onThemeChange }) => {
             </Select>
           </FormControl>
         </div>
-      </div>
-    </Drawer >
+      </DrawerContents>
+    </Drawer>
   )
 
   return (

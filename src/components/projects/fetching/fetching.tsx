@@ -12,10 +12,10 @@ const queryClient = new QueryClient();
 const Fetching = () => {
     return (
         <>
-            {/* <FetchingFetch url={JSON_PLACEHOLDER_URL} /> */}
+            <FetchingFetch url={JSON_PLACEHOLDER_URL} />
             <hr />
             <QueryClientProvider client={queryClient}>
-                {/* <FetchingUseQuery url={JSON_PLACEHOLDER_URL} /> */}
+                <FetchingUseQuery url={JSON_PLACEHOLDER_URL} />
                 <FetchingFromSpring url={SPRING_URL} />
             </QueryClientProvider>
             <hr />

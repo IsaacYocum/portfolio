@@ -1,27 +1,23 @@
-import { Typography } from '@mui/material';
+import { Typography, styled } from '@mui/material';
 import isaac from '../../assets/isaac.jpg'
 
-const styles = {
-  imgStyle: {
+const AboutContentDisplay = styled('div')({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  gap: '10px'
+})
+
+const AboutText = styled('div')({
+  maxWidth: '550px'
+})
+
+const ProfileImage = styled('img')({
     height: '400px',
     backgrounSize: 'cover',
     boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
     borderRadius: '15px'
-  },
-  aboutDisplay: {
-    display: 'flex',
-    flexWrap: 'wrap' as 'wrap',
-  },
-  aboutContentDisplay: {
-    display: 'flex',
-    flexWrap: 'wrap' as 'wrap',
-    justifyContent: 'center',
-    gap: '10px'
-  },
-  text: {
-    maxWidth: '550px'
-  }
-}
+})
 
 function About() {
   const dateWhenIBecameAProfessional = new Date('2018-08-01');
@@ -31,8 +27,8 @@ function About() {
   return (
     <>
       <Typography variant='h2'>About</Typography>
-      <div style={styles.aboutContentDisplay}>
-        <div style={styles.text}>
+      <AboutContentDisplay>
+        <AboutText>
           <p>My journey with software began while I was in the Marine Corps around the year 2013.</p>
           <p>I started messing around making websites with pure HTML and CSS and JavaScript and taking any courses or tutorials I could find.</p>
           <p>After leaving the military I decided to pursue this interest with a degree in Information Systems emphasising application development.</p>
@@ -42,9 +38,9 @@ function About() {
           <p>
             Interested in some of my work? Check out my <a href='https://github.com/IsaacYocum' target='_blank' rel='noreferrer'>GitHub</a>.
           </p>
-        </div>
-        <img src={isaac} alt="Isaac's Profile" style={styles.imgStyle} />
-      </div>
+        </AboutText>
+        <ProfileImage src={isaac} alt="Isaac's Profile" />
+      </AboutContentDisplay>
     </>
   );
 }

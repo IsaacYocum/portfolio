@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material/styles"
 import background from './assets/background.jpg'
 import road from './assets/road.png'
-import { blue, blueGrey, lightBlue } from "@mui/material/colors"
 
 export enum ThemeName {
   Light = 'LIGHT',
@@ -120,7 +119,7 @@ let meme = createTheme({
   }
 })
 
-let Themes = [
+const Themes = [
   light,
   dark,
   meme

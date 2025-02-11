@@ -75,13 +75,13 @@ const FetchingEmployee: React.FC<FetchingEmployeeProps> = ({url}) => {
 
     return (
         <>
-            Empoyee form
+            Employee form
             <form onSubmit={handleSubmit}>
-                <label>Name</label>
-                <input data-testid="Name" name="Name" type="text" onChange={handleFormChange}/>
+                <label htmlFor="nameInput">Name</label>
+                <input id="nameInput" data-testid="Name" name="Name" type="text" onChange={handleFormChange}/>
                 <hr />
-                <label>Salary</label>
-                <input data-testid="Salary" name="Salary" type="number" onChange={handleFormChange} />
+                <label htmlFor="salaryInput">Salary</label>
+                <input id="salaryInput" data-testid="Salary" name="Salary" type="number" onChange={handleFormChange} />
                 <hr />
                 <input data-testid="submit" name="Submit" type="submit" onChange={handleFormChange} />
             </form>
@@ -97,8 +97,8 @@ const FetchingEmployee: React.FC<FetchingEmployeeProps> = ({url}) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {employees?.map((e, i) => (
-                            <tr key={i}>
+                        {employees?.map(e => (
+                            <tr key={e.id}>
                                 <td>{e.id}</td>
                                 <td>{e.Name}</td>
                                 <td>{e.Salary}</td>

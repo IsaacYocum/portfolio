@@ -1,7 +1,6 @@
 .flexFiller  {
   display: flex;
   flex-wrap: wrap;
-  /* padding-left: 40px; */
 }
 
 .repoCard {
@@ -9,7 +8,6 @@
   margin-right: 10px;
   margin-bottom: 10px;
   word-break: break-word;
-  /* padding: 5px; */
   max-width: 250px;
   min-height: 120px;
   max-height: 150px;
@@ -37,7 +35,6 @@
 }
 
 .nameAndDescription {
-  /* padding: 5px; */
   grid-area: nameAndDescription;
 }
 

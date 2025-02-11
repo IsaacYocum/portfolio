@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-let Projects = () => {
+const Projects = () => {
   return (
     <>
       <Typography variant="h2">Projects</Typography>
