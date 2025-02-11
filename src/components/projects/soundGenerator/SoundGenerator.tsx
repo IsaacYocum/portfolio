@@ -25,17 +25,6 @@ const SoundGenerator = () => {
   const vol = useRef<GainNode | null>(null);
 
   useEffect(() => {
-    if (!audioContextRef.current) {
-      audioContextRef.current = new AudioContext();
-      osc.current = audioContextRef.current.createOscillator();
-      vol.current = audioContextRef.current.createGain();
-      osc.current.frequency.value = DEFAULT_FREQUENCY;
-      osc.current.type = DEFAULT_TYPE;
-      vol.current.gain.value = DEFAULT_VOL / 100;
-      osc.current.connect(vol.current)
-      vol.current.connect(audioContextRef.current.destination)
-      osc.current.detune.value = 100;
-    }
 
     return () => {
       if (audioContextRef.current) {
@@ -49,6 +38,18 @@ const SoundGenerator = () => {
   }, [])
 
   const startSound = () => {
+    if (!audioContextRef.current) {
+      audioContextRef.current = new AudioContext();
+      osc.current = audioContextRef.current.createOscillator();
+      vol.current = audioContextRef.current.createGain();
+      osc.current.frequency.value = DEFAULT_FREQUENCY;
+      osc.current.type = DEFAULT_TYPE;
+      vol.current.gain.value = DEFAULT_VOL / 100;
+      osc.current.connect(vol.current)
+      vol.current.connect(audioContextRef.current.destination)
+      osc.current.detune.value = 100;
+    }
+
     if (osc.current && !oscStarted.current) {
       osc.current.start()
       oscStarted.current = true;
