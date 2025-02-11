@@ -15,6 +15,7 @@ const styles = {
   aboutContentDisplay: {
     display: 'flex',
     flexWrap: 'wrap' as 'wrap',
+    justifyContent: 'center',
     gap: '10px'
   },
   text: {
@@ -43,9 +44,7 @@ function About() {
             Interested in some of my work? Checkout my <a href='https://github.com/IsaacYocum' target='_blank'>GitHub</a>
           </p>
         </div>
-        <div style={styles.text}>
         <img src={isaac} alt='Stunning photo of Isaac' style={styles.imgStyle} />
-      </div>
       </div>
     {/* </div> */}
 </>
