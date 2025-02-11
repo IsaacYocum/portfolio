@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useQuery } from "react-query";
 
 type fetchProps = { url: string }
 
@@ -30,11 +29,6 @@ const FetchingFromSpring: React.FC<fetchProps> = ({ url }) => {
 
         fetchData()
     }, [url])
-
-    // const { data, status, refetch } = useQuery("data", async (): Promise<any[]> => {
-    //     const response = await fetch(url);
-    //     return response.json()
-    // })
 
     const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
         const key = e.target.name

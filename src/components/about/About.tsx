@@ -1,5 +1,6 @@
 import { Typography, styled } from '@mui/material';
 import isaac from '../../assets/isaac.jpg'
+import { GITHUB_PROFILE_URL } from '../../constants';
 
 const AboutContentDisplay = styled('div')({
   display: 'flex',
@@ -36,7 +37,7 @@ function About() {
           <p>Now, I've been a Software Enginner and Developer for {diffInYears} years.</p>
           <p>I love being a perpetual learner and seeing how my skills develop over the years.</p>
           <p>
-            Interested in some of my work? Check out my <a href='https://github.com/IsaacYocum' target='_blank' rel='noreferrer'>GitHub</a>.
+            Interested in some of my work? Check out my <a href={GITHUB_PROFILE_URL} target='_blank' rel='noreferrer'>GitHub</a>.
           </p>
         </AboutText>
         <ProfileImage src={isaac} alt="Isaac's Profile" />

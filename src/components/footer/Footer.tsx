@@ -1,8 +1,8 @@
-import { styled } from "@mui/material/styles";
-import { Typography, Link as LinkBase } from '@mui/material';
+import { Link as LinkBase, Typography, styled } from '@mui/material';
 import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { VISIBLE_LINKS } from "../../routes/routes";
+import { GITHUB_PROFILE_URL, LINKEDIN_URL, MAILTO_EMAIL } from '../../constants';
 
 const FooterParent = styled('footer')({
   display: 'flex',
@@ -58,13 +58,13 @@ const Footer: FC<FooterProps> = ({ repoViewer }) => {
 
   const ContactLinks = useMemo(() => (
       <>
-        <LinkBase href="mailto:isyocum@gmail.com">
+        <LinkBase href={MAILTO_EMAIL}>
           <Typography>Email</Typography>
         </LinkBase>
-        <LinkBase href="https://github.com/IsaacYocum" target='_blank'>
+        <LinkBase href={GITHUB_PROFILE_URL} target='_blank'>
           <Typography>GitHub</Typography>
         </LinkBase>
-        <LinkBase href="https://www.linkedin.com/in/isaacyocum/" target='_blank'>
+        <LinkBase href={LINKEDIN_URL} target='_blank'>
           <Typography>LinkedIn</Typography>
         </LinkBase>
       </>

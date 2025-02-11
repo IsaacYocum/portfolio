@@ -1,5 +1,4 @@
-import { Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Typography, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useRepoViewer } from "../../App";
 import About from "../about/About";
