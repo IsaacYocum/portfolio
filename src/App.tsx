@@ -1,30 +1,22 @@
+import { CssBaseline } from '@mui/material';
+import { styled, Theme, ThemeProvider } from '@mui/material/styles';
 import React, { FC, useMemo, useState } from 'react';
 import { useQuery } from "react-query";
-import RepoViewer from './components/repo/RepoViewer';
 import { Outlet, useOutletContext } from "react-router-dom";
-import './App.css';
-import { CssBaseline } from '@mui/material';
-import { Theme, ThemeProvider } from '@mui/material/styles';
 import Themes from './Themes';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
+import RepoViewer from './components/repo/RepoViewer';
+import { GITHUB_REPOS_URL, REPO_NAMES_TO_DISPLAY } from './constants';
 
-declare module '@mui/material/styles' {
-  interface TypeText {
-    header: string
-  }
-}
-
-const REPO_NAMES_TO_DISPLAY = [
-  "portfolio",
-  "learn-lang-frontend",
-  "learn-lang-backend",
-  "VietnameseWords",
-  "VietnameseWordsAndroid",
-  "Pong",
-  "TicTacToe",
-  "lazyVimConfig"
-];
+const Content = styled('div')({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  maxWidth: "1280px",
+  margin: "2em",
+  gap: "15px"
+})
 
 type ContextType = { repoViewer: React.ReactNode | null }
 
@@ -33,7 +25,7 @@ export function useRepoViewer() {
 }
 
 const fetchGitHubRepos = async () => {
-  const res = await fetch("https://api.github.com/users/IsaacYocum/repos");
+  const res = await fetch(GITHUB_REPOS_URL);
   const ghRepos: Array<any> = await res.json();
   return ghRepos.filter((repo: any) => REPO_NAMES_TO_DISPLAY.includes(repo.name));
 };
@@ -56,9 +48,9 @@ const App: FC<AppProps> = () => {
     <ThemeProvider theme={theme} >
       <CssBaseline />
       <Header onThemeChange={handleThemeChange} />
-      <div id="content">
+      <Content id="content">
         <Outlet context={{ repoViewer }} />
-      </div>
+      </Content>
       <Footer repoViewer={repoViewer} />
     </ThemeProvider >
   );
