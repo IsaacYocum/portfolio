@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 let Projects = () => {
   return (
-    <div>
-      <Typography variant="h3">Projects</Typography>
+    <>
+      <Typography variant="h2">Projects</Typography>
       <p>Check out these project ideas I've made when the inspriation hits!</p>
       <Link to={'visualizer'}>Data structures and Algorithms Visualizer</Link>
       <br />
@@ -15,7 +15,7 @@ let Projects = () => {
       <Link to={'pomodoro'}>Pomodoro</Link>
       <br />
       <Link to={'fetching'}>Fetching</Link>
-    </div>
+    </>
   )
 }
 

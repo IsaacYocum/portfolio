@@ -31,14 +31,15 @@ const Resume = () => {
 
   return (
     <div style={styles.resume}>
-      <Typography variant='h4'>My Resume: Please take a copy&nbsp;&nbsp;
+      <Typography variant='h2'>My Resume</Typography>
+      <Typography variant='h4'>Please take a copy&nbsp;
         <IconButton
           size="large"
           edge="start"
           aria-label="Download Resume"
           onClick={() => { }}
         >
-          <Download onClick={downloadResume} sx={{ ...styles.pdf, fontSize: 35 }} />
+          <Download onClick={downloadResume} sx={{ ...styles.pdf, fontSize: 40 }} />
       </IconButton>
       </Typography>
       <Document className='pdf' file={RESUME_PATH}>
