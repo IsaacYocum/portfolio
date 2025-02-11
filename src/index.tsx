@@ -10,12 +10,11 @@ import routes from './routes/routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const router = createBrowserRouter(routes)
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-
-const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
