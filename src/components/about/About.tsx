@@ -19,7 +19,7 @@ const styles = {
     gap: '10px'
   },
   text: {
-    maxWidth: '500px'
+    maxWidth: '550px'
   }
 }
 
@@ -31,7 +31,6 @@ function About() {
   return (
     <>
       <Typography variant='h2'>About</Typography>
-  {/* <div style={styles.aboutDisplay}> */}
       <div style={styles.aboutContentDisplay}>
         <div style={styles.text}>
           <p>My journey with software began while I was in the Marine Corps around the year 2013.</p>
@@ -46,8 +45,7 @@ function About() {
         </div>
         <img src={isaac} alt='Stunning photo of Isaac' style={styles.imgStyle} />
       </div>
-    {/* </div> */}
-</>
+    </>
   );
 }
 
