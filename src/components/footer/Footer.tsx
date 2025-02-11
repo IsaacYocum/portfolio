@@ -28,7 +28,7 @@ let Footer: FC<FooterProps> = ({ repoViewer }) => {
         <div className="flexLinks">
           <p className='footerHeader'>Site</p>
           {VISIBLE_LINKS.map(route => (
-            <p
+            <div
               key={route.title}
               className="linkItem"
             >
@@ -39,7 +39,7 @@ let Footer: FC<FooterProps> = ({ repoViewer }) => {
               >
                 <Typography>{route.title}</Typography>
               </LinkBase>
-            </p>
+            </div>
           ))}
         </div>
         <div className="flexLinks">
