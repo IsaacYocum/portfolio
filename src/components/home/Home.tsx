@@ -3,32 +3,14 @@ import { Link } from "react-router-dom";
 import { useRepoViewer } from "../../App";
 import './Home.css'
 import About from "../about/About";
-
-const styles = {
-  code: {
-    color: 'teal'
-  }
-}
+import Introduction from "../introduction/Introduction";
 
 const Home = () => {
   const { repoViewer } = useRepoViewer();
 
   return (
     <>
-      <Typography variant="h2">Hello, I'm 
-        <span style={styles.code}> Isaac</span>
-      </Typography>
-      <Typography variant="h3">Welcome to my site... Please take a look around.</Typography>
-      <Divider />
-      <Typography variant="h4" >
-        <span style={styles.code}>IsaacYocum@dev</span>
-        <span>:~{'$'} pwd</span>
-      </Typography>
-      <Typography variant="h4">/home/myProtfolio</Typography>
-      <Typography variant="h4" >
-        <span style={styles.code}>IsaacYocum@dev</span>
-        <span>:~{'$'} whoami</span>
-      </Typography>
+      <Introduction />
       <div className="outer-headings">
         <div className="inner-headings">
           <span>
