@@ -15,6 +15,8 @@ const Content = styled('div')({
   alignItems: 'center',
   maxWidth: '1280px',
   margin: '2em',
+  marginTop: '48px',
+  paddingTop: '1em',
   gap: '15px',
 });
 

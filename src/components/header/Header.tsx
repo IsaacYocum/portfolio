@@ -66,7 +66,7 @@ const Header: FC<AppProps> = ({ onThemeChange }) => {
 
   const createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
     return (
-      <AppBar position='static'>
+      <AppBar position={openDrawer ? 'fixed' : 'static'}>
         <Toolbar variant="dense">
           <IconButton
             size="large"
