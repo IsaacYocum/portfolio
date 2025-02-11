@@ -16,11 +16,9 @@ interface AppProps {
 const Header: FC<AppProps> = ({ onThemeChange }) => {
   let theme = useTheme()
   let styles = useMemo(() => ({
-    header: {
-    },
     drawer: {
       backgroundColor: theme.palette.background.default,
-      color: theme.palette.text.header,
+      // color: theme.palette.text.header,
       display: 'flex',
       flexDirection: 'column' as 'column',
       flexGrow: 1,
@@ -83,7 +81,7 @@ const Header: FC<AppProps> = ({ onThemeChange }) => {
 
   let createAppBar = (openDrawer: boolean, children?: ReactNode[]) => {
     return (
-      <AppBar position='static' style={styles.header}>
+      <AppBar position='static'>
         <Toolbar variant="dense">
           <IconButton
             size="large"

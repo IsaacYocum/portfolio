@@ -19,7 +19,7 @@ const Home = () => {
         <span style={styles.code}> Isaac</span>
       </Typography>
       <Typography variant="h3">Welcome to my site... Please take a look around.</Typography>
-      <Divider variant="middle"/>
+      <Divider />
       <Typography variant="h4" >
         <span style={styles.code}>IsaacYocum@dev</span>
         <span>:~{'$'} pwd</span>

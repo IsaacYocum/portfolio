@@ -60,9 +60,7 @@ let App: FC<AppProps> = () => {
   return (
     <ThemeProvider theme={theme} >
       <CssBaseline />
-      <Header
-        onThemeChange={handleThemeChange}
-      />
+      <Header onThemeChange={handleThemeChange} />
       <div id="content">
         <Outlet context={{ repoViewer }} />
       </div>

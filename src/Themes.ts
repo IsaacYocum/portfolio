@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material/styles"
 import background from './assets/background.jpg'
 import road from './assets/road.png'
+import { blue, blueGrey, lightBlue } from "@mui/material/colors"
 
 export enum ThemeName {
   Light = 'LIGHT',
@@ -62,12 +63,19 @@ let dark = createTheme({
     ].join(','),
   },
   palette: {
-      primary: {
-        main: '#3f51b5',
-      },
-      secondary: {
-        main: '#f50057',
-      },
+    primary: {
+      main: '#3f51b5',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+    background: {
+      default: '#01051c',
+      paper: '#080f36'
+    },
+    text: {
+
+    },
     mode: 'dark'
   }
 })

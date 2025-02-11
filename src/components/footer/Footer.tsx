@@ -26,9 +26,9 @@ let Footer: FC<FooterProps> = ({ repoViewer }) => {
     >
       <div className="footerContent">
         <div className="flexLinks">
-          <ul className='footerHeader'>Site</ul>
+          <p className='footerHeader'>Site</p>
           {VISIBLE_LINKS.map(route => (
-            <ul
+            <p
               key={route.title}
               className="linkItem"
             >
@@ -39,17 +39,17 @@ let Footer: FC<FooterProps> = ({ repoViewer }) => {
               >
                 <Typography>{route.title}</Typography>
               </LinkBase>
-            </ul>
+            </p>
           ))}
         </div>
         <div className="flexLinks">
-          <ul className='footerHeader'>Contact</ul>
-          <ul><LinkBase style={linkStyles} href="mailto:isyocum@gmail.com">Email</LinkBase></ul>
-          <ul><LinkBase style={linkStyles} href="https://github.com/IsaacYocum" target='_blank'>GitHub</LinkBase></ul>
-          <ul><LinkBase style={linkStyles} href="https://www.linkedin.com/in/isaacyocum/" target='_blank'>LinkedIn</LinkBase></ul>
+          <p className='footerHeader'>Contact</p>
+          <p><LinkBase style={linkStyles} href="mailto:isyocum@gmail.com">Email</LinkBase></p>
+          <p><LinkBase style={linkStyles} href="https://github.com/IsaacYocum" target='_blank'>GitHub</LinkBase></p>
+          <p><LinkBase style={linkStyles} href="https://www.linkedin.com/in/isaacyocum/" target='_blank'>LinkedIn</LinkBase></p>
         </div>
         <div id="footerProjects">
-          <ul className='footerHeader'>Projects</ul>
+          <p className='footerHeader'>Projects</p>
           <div className="footerRepoList">
             {repoViewer}
           </div>

@@ -11,6 +11,10 @@ const styles = {
   aboutDisplay: {
     display: 'flex',
     flexWrap: 'wrap' as 'wrap',
+  },
+  aboutContentDisplay: {
+    display: 'flex',
+    flexWrap: 'wrap' as 'wrap',
     gap: '10px'
   },
   text: {
@@ -24,9 +28,10 @@ function About() {
   const diffInYears = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
 
   return (
-  <>
+    <>
       <Typography variant='h2'>About</Typography>
-      <div style={styles.aboutDisplay}>
+  {/* <div style={styles.aboutDisplay}> */}
+      <div style={styles.aboutContentDisplay}>
         <div style={styles.text}>
           <p>My journey with software began while I was in the Marine Corps around the year 2013.</p>
           <p>I started messing around making websites with pure HTML and CSS and JavaScript and taking any courses or tutorials I could find.</p>
@@ -38,9 +43,12 @@ function About() {
             Interested in some of my work? Checkout my <a href='https://github.com/IsaacYocum' target='_blank'>GitHub</a>
           </p>
         </div>
+        <div style={styles.text}>
         <img src={isaac} alt='Stunning photo of Isaac' style={styles.imgStyle} />
       </div>
-    </>
+      </div>
+    {/* </div> */}
+</>
   );
 }
 
