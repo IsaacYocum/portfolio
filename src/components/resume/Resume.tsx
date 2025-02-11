@@ -1,6 +1,6 @@
+import { Download } from '@mui/icons-material';
 import { IconButton, styled, Typography } from '@mui/material';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { Download } from '@mui/icons-material';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const RESUME_PATH = "./resume.pdf";
@@ -39,7 +39,7 @@ const Resume = () => {
           onClick={downloadResume}
         >
           <DownloadResume />
-      </IconButton>
+        </IconButton>
       </Typography>
       <Document className='pdf' file={RESUME_PATH}>
         <Page

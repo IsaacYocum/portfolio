@@ -46,7 +46,7 @@ const Introduction = () => {
                 <CodeSpan>IsaacYocum@dev</CodeSpan>
                 <span>:~{'$'} pwd</span>
             </Typography>
-            <Typography variant="h4">/home/myProtfolio</Typography>
+            <Typography variant="h4">/home/portfolio</Typography>
             <Typography variant="h4" >
                 <CodeSpan>IsaacYocum@dev</CodeSpan>
                 <span>:~{'$'} whoami</span>

@@ -1,5 +1,5 @@
 import { Typography, styled } from '@mui/material';
-import isaac from '../../assets/isaac.jpg'
+import isaac from '../../assets/isaac.jpg';
 import { GITHUB_PROFILE_URL } from '../../constants';
 
 const AboutContentDisplay = styled('div')({
@@ -14,10 +14,10 @@ const AboutText = styled('div')({
 })
 
 const ProfileImage = styled('img')({
-    height: '400px',
-    backgrounSize: 'cover',
-    boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
-    borderRadius: '15px'
+  height: '400px',
+  backgrounSize: 'cover',
+  boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
+  borderRadius: '15px'
 })
 
 function About() {

@@ -19,7 +19,7 @@ const Fetching = () => {
                 <FetchingFromSpring url={SPRING_URL} />
             </QueryClientProvider>
             <hr />
-            <FetchingEmployee url={EMPLOYEE_URL}/>
+            <FetchingEmployee url={EMPLOYEE_URL} />
         </>
     )
 }

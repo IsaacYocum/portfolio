@@ -13,10 +13,10 @@ type EmployeeForm = {
 const emptyEmployeeForm: EmployeeForm = {
     id: null,
     Name: "",
-    Salary: null 
+    Salary: null
 }
 
-const FetchingEmployee: React.FC<FetchingEmployeeProps> = ({url}) => {
+const FetchingEmployee: React.FC<FetchingEmployeeProps> = ({ url }) => {
     const [form, setForm] = useState<EmployeeForm>(emptyEmployeeForm)
     const [employees, setEmployees] = useState<EmployeeForm[]>([])
     const [isLoading, setIsLoading] = useState(true)
@@ -30,7 +30,7 @@ const FetchingEmployee: React.FC<FetchingEmployeeProps> = ({url}) => {
             }
             const json = await res.json();
             setEmployees(json);
-        } catch(e) {
+        } catch (e) {
             console.error(e)
         } finally {
             setIsLoading(false)
@@ -44,7 +44,7 @@ const FetchingEmployee: React.FC<FetchingEmployeeProps> = ({url}) => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        console.log("submit") 
+        console.log("submit")
 
         try {
             await fetch(url, {
@@ -54,7 +54,7 @@ const FetchingEmployee: React.FC<FetchingEmployeeProps> = ({url}) => {
                 },
                 body: JSON.stringify(form)
             })
-        } catch(e) {
+        } catch (e) {
             console.error(e)
         } finally {
             fetchEmployees()
@@ -78,7 +78,7 @@ const FetchingEmployee: React.FC<FetchingEmployeeProps> = ({url}) => {
             Employee form
             <form onSubmit={handleSubmit}>
                 <label htmlFor="nameInput">Name</label>
-                <input id="nameInput" data-testid="Name" name="Name" type="text" onChange={handleFormChange}/>
+                <input id="nameInput" data-testid="Name" name="Name" type="text" onChange={handleFormChange} />
                 <hr />
                 <label htmlFor="salaryInput">Salary</label>
                 <input id="salaryInput" data-testid="Salary" name="Salary" type="number" onChange={handleFormChange} />

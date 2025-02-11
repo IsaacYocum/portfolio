@@ -1,11 +1,11 @@
-import { MenuItem, Select, Theme, SelectChangeEvent, useTheme, InputLabel, FormControl, Icon, AppBar, Button, Divider, IconButton, Link as LinkBase, Toolbar, Typography, Drawer, styled } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Button, Divider, Drawer, FormControl, Icon, IconButton, InputLabel, Link as LinkBase, MenuItem, Select, SelectChangeEvent, styled, Theme, Toolbar, Typography, useTheme } from '@mui/material';
 import { FC, ReactNode, useState } from 'react';
 import { Link } from "react-router-dom";
+import Themes, { ThemeName } from '../../Themes';
+import drawerIcon from '../../assets/drawer.svg';
 import { VISIBLE_LINKS } from '../../routes/routes';
 import './Header.css';
-import Themes, { ThemeName } from '../../Themes';
-import drawerIcon from '../../assets/drawer.svg'
 
 const DrawerContents = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,

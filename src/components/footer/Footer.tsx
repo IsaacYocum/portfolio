@@ -1,8 +1,8 @@
 import { Link as LinkBase, Typography, styled } from '@mui/material';
 import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { VISIBLE_LINKS } from "../../routes/routes";
 import { GITHUB_PROFILE_URL, LINKEDIN_URL, MAILTO_EMAIL } from '../../constants';
+import { VISIBLE_LINKS } from "../../routes/routes";
 
 const FooterParent = styled('footer')({
   display: 'flex',
@@ -37,7 +37,7 @@ const FooterHeader = styled('p')({
 })
 
 const RepoListContainer = styled('div')({
-  overflowY: "scroll", 
+  overflowY: "scroll",
   maxHeight: "250px"
 })
 
@@ -57,17 +57,17 @@ const Footer: FC<FooterProps> = ({ repoViewer }) => {
   }, [])
 
   const ContactLinks = useMemo(() => (
-      <>
-        <LinkBase href={MAILTO_EMAIL}>
-          <Typography>Email</Typography>
-        </LinkBase>
-        <LinkBase href={GITHUB_PROFILE_URL} target='_blank'>
-          <Typography>GitHub</Typography>
-        </LinkBase>
-        <LinkBase href={LINKEDIN_URL} target='_blank'>
-          <Typography>LinkedIn</Typography>
-        </LinkBase>
-      </>
+    <>
+      <LinkBase href={MAILTO_EMAIL}>
+        <Typography>Email</Typography>
+      </LinkBase>
+      <LinkBase href={GITHUB_PROFILE_URL} target='_blank'>
+        <Typography>GitHub</Typography>
+      </LinkBase>
+      <LinkBase href={LINKEDIN_URL} target='_blank'>
+        <Typography>LinkedIn</Typography>
+      </LinkBase>
+    </>
   ), [])
 
   return (

@@ -2,14 +2,14 @@ import { Navigate } from "react-router-dom";
 import App from '../App';
 import About from '../components/about/About';
 import ErrorPage from '../components/ErrorPage';
-import Home from '../components/home/Home'
+import Home from '../components/home/Home';
+import Fetching from "../components/projects/fetching/fetching";
+import Pomodoro from "../components/projects/pomodoro/pomodoro";
 import Projects from "../components/projects/Projects";
 import Reader from "../components/projects/reader/Reader";
 import SoundGenerator from "../components/projects/soundGenerator/SoundGenerator";
-import Resume from '../components/resume/Resume'
+import Resume from '../components/resume/Resume';
 import Visualizer from "../components/visualizer/Visualizer";
-import Pomodoro from "../components/projects/pomodoro/pomodoro";
-import Fetching from "../components/projects/fetching/fetching";
 
 const PROJECTS_PATH = 'projects'
 

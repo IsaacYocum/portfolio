@@ -40,14 +40,10 @@ const App: FC<AppProps> = () => {
     <RepoViewer repos={ghRepos} />
   ), [ghRepos])
 
-  let handleThemeChange = (theme: Theme) => {
-    setTheme(theme);
-  }
-
   return (
-    <ThemeProvider theme={theme} >
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header onThemeChange={handleThemeChange} />
+      <Header onThemeChange={theme => setTheme(theme)} />
       <Content id="content">
         <Outlet context={{ repoViewer }} />
       </Content>
