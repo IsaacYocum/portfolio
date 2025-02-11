@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
+import { useQuery } from "react-query";
 import RepoViewer from './components/repo/RepoViewer';
 import { Outlet, useOutletContext } from "react-router-dom";
 import './App.css';
@@ -31,27 +32,21 @@ export function useRepoViewer() {
   return useOutletContext<ContextType>();
 }
 
+const fetchGitHubRepos = async () => {
+  const res = await fetch("https://api.github.com/users/IsaacYocum/repos");
+  const ghRepos: Array<any> = await res.json();
+  return ghRepos.filter((repo: any) => REPO_NAMES_TO_DISPLAY.includes(repo.name));
+};
+
 type AppProps = { content?: React.ReactNode }
 
-let App: FC<AppProps> = () => {
-  let [theme, setTheme] = useState<Theme>(Themes[1]);
-  let [repos, setRepos] = useState<any>([]);
+const App: FC<AppProps> = () => {
+  const [theme, setTheme] = useState<Theme>(Themes[1]);
+  const { data: ghRepos } = useQuery("ghRepos", fetchGitHubRepos);
 
-  const repoViewer = useMemo(() =>
-    <RepoViewer repos={repos} />,
-    [repos]
-  )
-
-  useEffect(() => {
-    async function fetchRepos() {
-      let response = await fetch("https://api.github.com/users/IsaacYocum/repos");
-      let ghRepos: Array<any> = await response.json();
-      ghRepos = ghRepos.filter((repo: any) => REPO_NAMES_TO_DISPLAY.includes(repo.name));
-      setRepos(ghRepos)
-    }
-
-    fetchRepos();
-  }, [])
+  const repoViewer = useMemo(() => (
+    <RepoViewer repos={ghRepos} />
+  ), [ghRepos])
 
   let handleThemeChange = (theme: Theme) => {
     setTheme(theme);

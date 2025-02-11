@@ -4,7 +4,7 @@ import './Repo.css'
 
 type RepoViewerProps = { repos?: Array<any> | null }
 
-let RepoViewer: FC<RepoViewerProps> = ({ repos }) => {
+const RepoViewer: FC<RepoViewerProps> = ({ repos }) => {
   return (
     <div id="repoViewer">
       <div className="flexFiller">
