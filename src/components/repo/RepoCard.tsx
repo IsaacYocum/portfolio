@@ -16,7 +16,7 @@ const Card = styled('div')(({ theme }) => ({
   gridTemplateAreas: "'nameAndDescription'\n    'languageAndLink'",
   backgroundColor: theme.palette.background.default,
   '&:hover': {
-    backgroundColor: 'red'
+    backgroundColor: theme.palette.background.paper
   }
 }))
 
