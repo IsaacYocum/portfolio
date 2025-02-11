@@ -40,10 +40,10 @@ function About() {
           <p>Now, I've been a Software Enginner and Developer for {diffInYears} years.</p>
           <p>I love being a perpetual learner and seeing how my skills develop over the years.</p>
           <p>
-            Interested in some of my work? Checkout my <a href='https://github.com/IsaacYocum' target='_blank'>GitHub</a>
+            Interested in some of my work? Check out my <a href='https://github.com/IsaacYocum' target='_blank' rel='noreferrer'>GitHub</a>.
           </p>
         </div>
-        <img src={isaac} alt='Stunning photo of Isaac' style={styles.imgStyle} />
+        <img src={isaac} alt="Isaac's Profile" style={styles.imgStyle} />
       </div>
     </>
   );
