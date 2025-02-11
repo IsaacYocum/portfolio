@@ -52,7 +52,7 @@ const Header: FC<AppProps> = ({ onThemeChange }) => {
           to={route.path}
           component={Link}
         >
-          <p >{route.title}</p>
+          {route.title}
         </LinkBase>
       </Button>
     ));
