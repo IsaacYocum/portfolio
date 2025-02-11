@@ -1,6 +1,5 @@
 import { FC } from "react";
 import RepoCard from "./RepoCard";
-import './Repo.css'
 import { styled } from "@mui/material";
 
 const RepoContent = styled('div')({
