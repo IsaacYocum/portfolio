@@ -1,18 +1,22 @@
 import { FC } from "react";
 import RepoCard from "./RepoCard";
 import './Repo.css'
+import { styled } from "@mui/material";
+
+const RepoContent = styled('div')({
+  display: "flex", 
+  flexWrap: "wrap"
+})
 
 type RepoViewerProps = { repos?: Array<any> | null }
 
 const RepoViewer: FC<RepoViewerProps> = ({ repos }) => {
   return (
-    <div id="repoViewer">
-      <div className="flexFiller">
-        {repos?.map(repo => (
-          <RepoCard key={repo.name} repo={repo} />
-        ))}
-      </div>
-    </div>
+    <RepoContent id="repoViewer">
+      {repos?.map(repo => (
+        <RepoCard key={repo.name} repo={repo} />
+      ))}
+    </RepoContent>
   )
 }
 
