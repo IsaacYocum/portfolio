@@ -36,7 +36,7 @@ export const VISIBLE_LINKS = [
   },
 ]
 
-let routes = [
+const routes = [
   {
     path: "/",
     element: <Navigate to="/portfolio" />  // Convenient redirect for localhost
