@@ -12,7 +12,7 @@ import { useState } from 'react';
 const Terminal = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  maxWidth: '900px',
+  maxWidth: '850px',
   borderRadius: '10px',
   overflow: 'hidden',
   boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
@@ -26,11 +26,15 @@ const TerminalHeader = styled('div')({
   alignItems: 'center',
   backgroundImage: 'linear-gradient(#626055, #3e3d39)',
   textAlign: 'center',
-  paddingRight: '10px',
+  paddingRight: '5px',
 });
 
 const HeaderSpacing = styled('div')({
   flex: '1 1 auto',
+});
+
+const TerminalTitle = styled(Typography)({
+  margin: '0 5px',
 });
 
 const TerminalBody = styled('div')({
@@ -39,9 +43,10 @@ const TerminalBody = styled('div')({
   backgroundColor: '#300924',
 });
 
-const CursorLine = styled(Typography)({
+const TerminalLine = styled(Typography)({
   display: 'flex',
   alignItems: 'center',
+  flexWrap: 'wrap',
 });
 
 const CodeSpan1 = styled('span')({
@@ -102,22 +107,24 @@ const Introduction = () => {
       <Terminal>
         <TerminalHeader>
           <HeaderSpacing />
-          <Typography variant="h4">IsaacYocum@dev: ~/portfolio</Typography>
+          <TerminalTitle variant="h4">
+            IsaacYocum@dev: ~/portfolio
+          </TerminalTitle>
           <HeaderSpacing />
           <CancelOutlined />
           <DoDisturbOnOutlined />
           <StopCircleOutlined />
         </TerminalHeader>
         <TerminalBody>
-          <Typography variant="h4">
+          <TerminalLine variant="h4">
             <CodeSpan1>IsaacYocum@dev</CodeSpan1>:
             <CodeSpan2>~/portfolio</CodeSpan2>$ pwd
-          </Typography>
+          </TerminalLine>
           <Typography variant="h4">/home/portfolio</Typography>
-          <Typography variant="h4">
+          <TerminalLine variant="h4">
             <CodeSpan1>IsaacYocum@dev</CodeSpan1>:
             <CodeSpan2>~/portfolio</CodeSpan2>$ whoami
-          </Typography>
+          </TerminalLine>
           <OuterHeadings>
             <InnerHeadings>
               <InnerHeadingsSpan>
@@ -128,11 +135,11 @@ const Introduction = () => {
               </InnerHeadingsSpan>
             </InnerHeadings>
           </OuterHeadings>
-          <CursorLine variant="h4">
+          <TerminalLine variant="h4">
             <CodeSpan1>IsaacYocum@dev</CodeSpan1>:
             <CodeSpan2>~/portfolio</CodeSpan2>$
             {showCursor && <Cursor fontSize="large" />}
-          </CursorLine>
+          </TerminalLine>
         </TerminalBody>
       </Terminal>
     </>
