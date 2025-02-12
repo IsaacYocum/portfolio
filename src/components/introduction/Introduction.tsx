@@ -111,7 +111,7 @@ const Introduction = () => {
         <TerminalBody>
           <Typography variant="h4">
             <CodeSpan1>IsaacYocum@dev</CodeSpan1>:
-            <CodeSpan2>~/portfolio</CodeSpan2> $ pwd
+            <CodeSpan2>~/portfolio</CodeSpan2>$ pwd
           </Typography>
           <Typography variant="h4">/home/portfolio</Typography>
           <Typography variant="h4">
