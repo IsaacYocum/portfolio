@@ -32,9 +32,9 @@ function About() {
         <AboutText>
           <p>My journey with software began while I was in the Marine Corps around the year 2013.</p>
           <p>I started messing around making websites with pure HTML and CSS and JavaScript and taking any courses or tutorials I could find.</p>
-          <p>After leaving the military I decided to pursue this interest with a degree in Information Systems emphasising application development.</p>
+          <p>After leaving the military I decided to pursue this interest with a degree in Information Systems with a focus on application development.</p>
           <p>While in college I got a software internship in my Junior year to further develop my skills.</p>
-          <p>Now, I've been a Software Enginner and Developer for {diffInYears} years.</p>
+          <p>Now, I've been a Software Engineer and Developer for {diffInYears} years.</p>
           <p>I love being a perpetual learner and seeing how my skills develop over the years.</p>
           <p>
             Interested in some of my work? Check out my <a href={GITHUB_PROFILE_URL} target='_blank' rel='noreferrer'>GitHub</a>.
