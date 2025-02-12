@@ -1,11 +1,5 @@
 import { FC } from 'react';
 import RepoCard from './RepoCard';
-import { styled } from '@mui/material';
-
-const RepoContent = styled('div')({
-  display: 'flex',
-  flexWrap: 'wrap',
-});
 
 type RepoViewerProps = { repos?: Array<any> | null };
 
