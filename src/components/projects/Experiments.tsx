@@ -1,10 +1,10 @@
-import { styled, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { styled, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import construction from '../../assets/construction.png';
 
 const ConstructionImage = styled('img')({
-  height: "300px"
-})
+  height: '300px',
+});
 
 const Experiments = () => {
   return (
@@ -26,6 +26,6 @@ const Experiments = () => {
       <Link to={'fetching'}>Fetching</Link>
     </>
   );
-}
+};
 
 export default Experiments;
