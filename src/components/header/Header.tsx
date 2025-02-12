@@ -72,7 +72,6 @@ const Header: FC<AppProps> = ({ onThemeChange }) => {
             size="large"
             edge="start"
             aria-label="menu"
-            sx={{ mr: 2 }}
             onClick={() => toggleDrawer(openDrawer)}
           >
             {theme.id === ThemeName.Meme ? memeDrawerIcon : <MenuIcon />}
