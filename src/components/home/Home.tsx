@@ -1,12 +1,18 @@
-import { Typography, styled } from "@mui/material";
-import { Link } from "react-router-dom";
-import { useRepoViewer } from "../../App";
-import About from "../about/About";
-import Introduction from "../introduction/Introduction";
+import { Typography, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useRepoViewer } from '../../App';
+import About from '../about/About';
+import Introduction from '../introduction/Introduction';
+
+const RepoViewerContainer = styled('div')({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+});
 
 const BlockQuote = styled('blockquote')({
-  textAlign: "right"
-})
+  textAlign: 'right',
+});
 
 const Home = () => {
   const { repoViewer } = useRepoViewer();
@@ -25,10 +31,12 @@ const Home = () => {
       <Typography variant="h4">
         I use this site to conduct <Link to={'projects'}>Experiments</Link>.
       </Typography>
-      <Typography variant="h4">Check out some of my <Link to={'projects'}>GitHub Repos!</Link></Typography>
-      {repoViewer}
+      <Typography variant="h4">
+        Check out some of my <Link to={'projects'}>GitHub Repos!</Link>
+      </Typography>
+      <RepoViewerContainer>{repoViewer}</RepoViewerContainer>
     </>
-  )
-}
+  );
+};
 
 export default Home;

@@ -6,7 +6,6 @@ export const REPO_NAMES_TO_DISPLAY = [
   "VietnameseWordsAndroid",
   "Pong",
   "TicTacToe",
-  "lazyVimConfig"
 ];
 
 export const GITHUB_PROFILE_URL = "https://github.com/IsaacYocum"
