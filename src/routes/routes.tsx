@@ -5,13 +5,13 @@ import ErrorPage from '../components/ErrorPage';
 import Home from '../components/home/Home';
 import Fetching from "../components/projects/fetching/fetching";
 import Pomodoro from "../components/projects/pomodoro/pomodoro";
-import Projects from "../components/projects/Projects";
+import Experiments from "../components/projects/Experiments";
 import Reader from "../components/projects/reader/Reader";
 import SoundGenerator from "../components/projects/soundGenerator/SoundGenerator";
 import Resume from '../components/resume/Resume';
 import Visualizer from "../components/visualizer/Visualizer";
 
-const PROJECTS_PATH = 'projects'
+const EXPERIMENTS_PATH = 'experiments'
 
 export const VISIBLE_LINKS = [
   {
@@ -30,9 +30,9 @@ export const VISIBLE_LINKS = [
     title: 'Resume'
   },
   {
-    path: PROJECTS_PATH,
-    element: <Projects />,
-    title: 'Projects',
+    path: EXPERIMENTS_PATH,
+    element: <Experiments />,
+    title: 'Experiments',
   },
 ]
 
@@ -48,17 +48,17 @@ const routes = [
     children: [
       ...VISIBLE_LINKS,
       {
-        path: `${PROJECTS_PATH}/visualizer`,
+        path: `${EXPERIMENTS_PATH}/visualizer`,
         element: <Visualizer />,
         title: 'Visualizer'
       },
       {
-        path: `${PROJECTS_PATH}/reader`,
+        path: `${EXPERIMENTS_PATH}/reader`,
         element: <Reader />,
         title: 'reader'
       },
       {
-        path: `${PROJECTS_PATH}/soundGenerator`,
+        path: `${EXPERIMENTS_PATH}/soundGenerator`,
         element: <SoundGenerator />,
         title: 'SoundGenerator'
       },
@@ -68,12 +68,12 @@ const routes = [
       //   title: 'tictactoe'
       // },
       {
-        path: `${PROJECTS_PATH}/pomodoro`,
+        path: `${EXPERIMENTS_PATH}/pomodoro`,
         element: <Pomodoro />,
         title: 'pomodoro'
       },
       {
-        path: `${PROJECTS_PATH}/fetching`,
+        path: `${EXPERIMENTS_PATH}/fetching`,
         element: <Fetching />,
         title: 'fetching'
       }
