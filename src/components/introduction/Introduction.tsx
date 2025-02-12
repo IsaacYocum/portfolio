@@ -24,7 +24,7 @@ const TerminalHeader = styled('div')({
   flexDirection: 'row',
   flexShrink: '0',
   alignItems: 'center',
-  backgroundColor: '#3e3d39',
+  backgroundImage: 'linear-gradient(#626055, #3e3d39)',
   textAlign: 'center',
   paddingRight: '10px',
 });
@@ -37,6 +37,11 @@ const TerminalBody = styled('div')({
   paddingTop: '5px',
   paddingLeft: '5px',
   backgroundColor: '#300924',
+});
+
+const CursorLine = styled(Typography)({
+  display: 'flex',
+  alignItems: 'center',
 });
 
 const CodeSpan1 = styled('span')({
@@ -123,11 +128,11 @@ const Introduction = () => {
               </InnerHeadingsSpan>
             </InnerHeadings>
           </OuterHeadings>
-          <Typography variant="h4">
+          <CursorLine variant="h4">
             <CodeSpan1>IsaacYocum@dev</CodeSpan1>:
-            <CodeSpan2>~/portfolio</CodeSpan2>$ 
+            <CodeSpan2>~/portfolio</CodeSpan2>$
             {showCursor && <Cursor fontSize="large" />}
-          </Typography>
+          </CursorLine>
         </TerminalBody>
       </Terminal>
     </>
