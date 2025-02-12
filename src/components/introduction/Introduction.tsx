@@ -108,7 +108,7 @@ const Introduction = () => {
         <TerminalHeader>
           <HeaderSpacing />
           <TerminalTitle variant="h4">
-            IsaacYocum@dev: ~/portfolio
+            isaacyocum@dev: ~/portfolio
           </TerminalTitle>
           <HeaderSpacing />
           <CancelOutlined />
@@ -117,12 +117,12 @@ const Introduction = () => {
         </TerminalHeader>
         <TerminalBody>
           <TerminalLine variant="h4">
-            <CodeSpan1>IsaacYocum@dev</CodeSpan1>:
+            <CodeSpan1>isaacyocum@dev</CodeSpan1>:
             <CodeSpan2>~/portfolio</CodeSpan2>$ pwd
           </TerminalLine>
           <Typography variant="h4">/home/portfolio</Typography>
           <TerminalLine variant="h4">
-            <CodeSpan1>IsaacYocum@dev</CodeSpan1>:
+            <CodeSpan1>isaacyocum@dev</CodeSpan1>:
             <CodeSpan2>~/portfolio</CodeSpan2>$ whoami
           </TerminalLine>
           <OuterHeadings>
@@ -136,7 +136,7 @@ const Introduction = () => {
             </InnerHeadings>
           </OuterHeadings>
           <TerminalLine variant="h4">
-            <CodeSpan1>IsaacYocum@dev</CodeSpan1>:
+            <CodeSpan1>isaacyocum@dev</CodeSpan1>:
             <CodeSpan2>~/portfolio</CodeSpan2>$
             {showCursor && <Cursor fontSize="large" />}
           </TerminalLine>
