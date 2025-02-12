@@ -32,7 +32,7 @@ const Home = () => {
         I use this site to conduct <Link to={'projects'}>Experiments</Link>.
       </Typography>
       <Typography variant="h4">
-        Check out some of my <Link to={'projects'}>GitHub Repos!</Link>
+        Check out some of my <Link to={'projects'}>GitHub Repos</Link>!
       </Typography>
       <RepoViewerContainer>{repoViewer}</RepoViewerContainer>
     </>
