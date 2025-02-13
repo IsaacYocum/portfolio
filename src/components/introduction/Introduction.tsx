@@ -13,6 +13,7 @@ const Terminal = styled('div')({
   overflow: 'hidden',
   boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
   width: '100%',
+  color: '#f9f8f9'
 });
 
 const TerminalHeader = styled('div')({
@@ -46,11 +47,11 @@ const TerminalLine = styled(Typography)({
 });
 
 const CodeSpan1 = styled('span')({
-  color: '#76de34',
+  color: '#8ae234'
 });
 
 const CodeSpan2 = styled('span')({
-  color: '#374da9',
+  color: '#719fce'
 });
 
 const OuterHeadings = styled('div')({
