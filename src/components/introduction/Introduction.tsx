@@ -87,7 +87,7 @@ const Cursor = styled(Square)({
 });
 
 const TerminalButtons = styled('img')({
-  width: '70px',
+  width: '67px',
 });
 
 const Introduction = () => {
