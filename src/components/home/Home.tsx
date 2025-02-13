@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useRepoViewer } from '../../App';
 import About from '../about/About';
 import Introduction from '../introduction/Introduction';
+import ExperimentsCarousel from '../projects/ExperimentsCarousel';
 
 const RepoViewerContainer = styled('div')({
   display: 'flex',
@@ -28,13 +29,20 @@ const Home = () => {
           <cite>Isaac</cite>
         </figcaption>
       </BlockQuote>
-      <Typography variant="h4">
-        I use this site to conduct <Link to={'projects'}>Experiments</Link>.
+      <Typography variant="h3">
+        I use this site to conduct <Link to={'projects'}>Experiments</Link>
+      </Typography>
+      <ExperimentsCarousel />
+      <Typography variant="h3">
+        Want to see Code?
       </Typography>
       <Typography variant="h4">
-        Check out some of my <Link to={'projects'}>GitHub Repos</Link>!
+        Check out some of my <Link to={'projects'}>GitHub Repos</Link>
       </Typography>
       <RepoViewerContainer>{repoViewer}</RepoViewerContainer>
+      <Typography variant="h3">
+        Want to contact me?
+      </Typography>
     </>
   );
 };
