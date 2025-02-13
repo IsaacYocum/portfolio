@@ -1,13 +1,9 @@
-import {
-  CancelOutlined,
-  DoDisturbOnOutlined,
-  Square,
-  StopCircleOutlined,
-} from '@mui/icons-material';
+import { Square } from '@mui/icons-material';
 import { Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useInterval } from '../../hooks/customHooks';
 import { useState } from 'react';
+import linuxButtons from '../../assets/terminalButtons.png';
+import { useInterval } from '../../hooks/customHooks';
 
 const Terminal = styled('div')({
   display: 'flex',
@@ -90,6 +86,10 @@ const Cursor = styled(Square)({
   marginLeft: '5px',
 });
 
+const TerminalButtons = styled('img')({
+  height: '25px',
+});
+
 const Introduction = () => {
   const [showCursor, setShowCursor] = useState(false);
   useInterval(() => setShowCursor(!showCursor), 700);
@@ -111,9 +111,7 @@ const Introduction = () => {
             isaacyocum@dev: ~/portfolio
           </TerminalTitle>
           <HeaderSpacing />
-          <CancelOutlined />
-          <DoDisturbOnOutlined />
-          <StopCircleOutlined />
+          <TerminalButtons src={linuxButtons} alt="linuxTerminalButtons" />
         </TerminalHeader>
         <TerminalBody>
           <TerminalLine variant="h4">
