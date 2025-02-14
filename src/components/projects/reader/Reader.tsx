@@ -1,6 +1,6 @@
 import { TextField, Button, Typography, Checkbox, FormControlLabel } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useInterval } from "../../../hooks/customHooks";
+import { useInterval } from "../../../hooks/useInterval";
 import './Reader.css'
 
 let startTime: number = 0;
@@ -20,12 +20,12 @@ const STARTER_TEXT =
 \nAnd I knew exactly what to do. But in a much more real sense, I had no idea what to do.
 `
 
-let Reader = () => {
+const Reader = () => {
   let [text, setText] = useState(STARTER_TEXT);
   let [displayText, setDisplayText] = useState<string[]>([]);
   let [displayTextIndex, setDisplayTextIndex] = useState(0);
   let [timerDelay, setTimerDelay] = useState<number>(300)
-  let [delay, setDelay] = useState<number | null>(null)
+  let [delay, setDelay] = useState<number | undefined>(undefined)
   let [elapsedTime, setElapsedTime] = useState<number>(0)
   let [runningTime, setRunningTime] = useState<number>(0)
   let [pauseStarted, setPausedStarted] = useState<number>(0)
@@ -94,7 +94,7 @@ let Reader = () => {
     }
 
     setRunningState(running);
-    setDelay(null);
+    setDelay(undefined);
   }
 
   let handleResetTimer = () => {
@@ -104,7 +104,7 @@ let Reader = () => {
     setPausedTime(0);
     setElapsedTime(0);
     setDisplayTextIndex(0);
-    setDelay(null);
+    setDelay(undefined);
   }
 
   return (

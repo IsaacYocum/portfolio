@@ -3,7 +3,7 @@ import { Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 import linuxButtons from '../../assets/terminalButtons.png';
-import { useInterval } from '../../hooks/customHooks';
+import { useInterval } from '../../hooks/useInterval';
 
 const Terminal = styled('div')({
   display: 'flex',

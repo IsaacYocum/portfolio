@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useRepoViewer } from '../../App';
 import About from '../about/About';
 import Introduction from '../introduction/Introduction';
-import ExperimentsCarousel from '../projects/ExperimentsCarousel';
+import Carousel from '../projects/carousel/Carousel';
 
 const RepoViewerContainer = styled('div')({
   display: 'flex',
@@ -32,7 +32,7 @@ const Home = () => {
       <Typography variant="h3">
         I use this site to conduct <Link to={'projects'}>Experiments</Link>
       </Typography>
-      <ExperimentsCarousel />
+      <Carousel />
       <Typography variant="h3">
         Want to see Code?
       </Typography>
