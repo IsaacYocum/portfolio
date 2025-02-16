@@ -30,6 +30,8 @@ const MediaQueryWrapper = styled('section')({
   "@media screen and (max-width: 63em)": {
     "#reader": { flexDirection: "column" },
     "#readerSettings": { flex: "0 0 20em" },
+  },
+  "@media screen and (max-width: 40em)": {
     "#readerSettingsButtons": { 
       flexDirection: "column",
       alignContent: 'center'
@@ -41,7 +43,7 @@ const ReaderContainer = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   alignContent: 'center',
-  justifyItems: 'center',
+  // justifyItems: 'center',
   width: '100%',
 });
 
@@ -181,7 +183,7 @@ const Reader = () => {
   };
 
   return (
-    <MediaQueryWrapper>
+    <MediaQueryWrapper id='mediaQueryWrapper'>
       <Typography variant="h3" align='center'>Reader</Typography>
       <ReaderContainer id="reader">
         <ReaderSettings id="readerSettings">

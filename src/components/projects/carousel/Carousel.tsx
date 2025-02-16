@@ -8,6 +8,15 @@ import { useInterval } from '../../../hooks/useInterval';
 
 const CarouselWrapper = styled('section')({
   display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: 550,
+  width: '100%',
+});
+
+const CarouselContent = styled('section')({
+  display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   height: 550,
@@ -17,15 +26,17 @@ const CarouselWrapper = styled('section')({
 const CarouselCardContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
   flex: '1',
   padding: '10px 25px',
   borderRadius: 15,
   overflow: 'scroll',
   backgroundColor: theme.palette.background.paper,
+  border: `2px solid ${theme.palette.primary.main}`,
   height: 'inherit',
 }));
+
+const CarouselCount = styled('div')(({ theme }) => ({}));
 
 const ArrowContainer = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -36,7 +47,11 @@ type CarouselCardProps = {
 };
 
 const CarouselCard: FC<CarouselCardProps> = ({ children }) => {
-  return <CarouselCardContainer>{children}</CarouselCardContainer>;
+  return (
+    <CarouselCardContainer id="carouselCardContainer">
+      {children}
+    </CarouselCardContainer>
+  );
 };
 
 type CarouselContainerProps = {
@@ -68,22 +83,27 @@ const CarouselContainer: FC<CarouselContainerProps> = ({
   };
 
   return (
-    <CarouselWrapper>
-      <ArrowContainer>
-        <Tooltip title="Previous Experiment">
-          <IconButton onClick={handleLeftClick}>
-            <ArrowBack fontSize="large" />
-          </IconButton>
-        </Tooltip>
-      </ArrowContainer>
-      {children?.[activeCardIndex] || <p>no cards defined</p>}
-      <ArrowContainer>
-        <Tooltip title="Next Experiment">
-          <IconButton onClick={handleRightClick}>
-            <ArrowForward fontSize="large" />
-          </IconButton>
-        </Tooltip>
-      </ArrowContainer>
+    <CarouselWrapper id="carouselWrapper">
+      <CarouselContent id='carouselContent'>
+        <ArrowContainer>
+          <Tooltip title="Previous Experiment">
+            <IconButton onClick={handleLeftClick}>
+              <ArrowBack fontSize="large" />
+            </IconButton>
+          </Tooltip>
+        </ArrowContainer>
+        {children?.[activeCardIndex] || <p>no cards defined</p>}
+        <ArrowContainer>
+          <Tooltip title="Next Experiment">
+            <IconButton onClick={handleRightClick}>
+              <ArrowForward fontSize="large" />
+            </IconButton>
+          </Tooltip>
+        </ArrowContainer>
+      </CarouselContent>
+        <CarouselCount>
+          {activeCardIndex + 1}/{children.length}
+        </CarouselCount>
     </CarouselWrapper>
   );
 };

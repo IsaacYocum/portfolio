@@ -1,26 +1,39 @@
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, Typography, useTheme } from "@mui/material";
-import { useState } from "react";
-import './Visualizer.css'
-import CSS from 'csstype'
+import {
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+  useTheme,
+} from '@mui/material';
+import { useState } from 'react';
+import './Visualizer.css';
+import CSS from 'csstype';
 
 const Visualizer = () => {
   const theme = useTheme();
-  const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+  const testArray = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  ];
   let [target, setTarget] = useState<number>(testArray[1]);
 
   interface DataStructure {
-    id: string,
-    label: string,
-    value: string,
-    algorithms: Algorithm[],
+    id: string;
+    label: string;
+    value: string;
+    algorithms: Algorithm[];
   }
 
   interface Algorithm {
-    id: string,
-    label: string,
-    value: string,
-    run: (arr?: number[], tar?: number) => void,
-    targetRequired: boolean
+    id: string;
+    label: string;
+    value: string;
+    run: (arr?: number[], tar?: number) => void;
+    targetRequired: boolean;
   }
 
   const iterateArray: Algorithm = {
@@ -29,7 +42,7 @@ const Visualizer = () => {
     value: 'iterate',
     run: () => iterate(testArray),
     targetRequired: false,
-  }
+  };
 
   const binarySearchAlg: Algorithm = {
     id: 'binarySearch',
@@ -37,40 +50,31 @@ const Visualizer = () => {
     value: 'binarySearch',
     run: (_, tar?: number) => binarySearch(target || 0, testArray),
     targetRequired: true,
-  }
+  };
 
   const binaryTreeSearch: Algorithm = {
     id: 'binaryTreeSearch',
     label: 'Binary Tree Search',
     value: 'binaryTreeSearch',
-    run: () => { },
+    run: () => {},
     targetRequired: true,
-  }
-
+  };
 
   const array: DataStructure = {
     id: 'array',
     label: 'Array',
     value: 'array',
-    algorithms: [
-      iterateArray,
-      binarySearchAlg,
-    ]
-  }
+    algorithms: [iterateArray, binarySearchAlg],
+  };
 
   const binaryTree: DataStructure = {
     id: 'binaryTree',
     label: 'Binary Tree',
     value: 'Binary Tree',
-    algorithms: [
-      binaryTreeSearch,
-    ]
-  }
+    algorithms: [binaryTreeSearch],
+  };
 
-  const dataStructures = [
-    array,
-    binaryTree
-  ]
+  const dataStructures = [array, binaryTree];
 
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
@@ -78,13 +82,13 @@ const Visualizer = () => {
   const [dataStructure, setDataStructure] = useState<DataStructure>(array);
   const [algorithm, setAlgorithm] = useState<Algorithm>(array.algorithms[0]);
 
-  const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
+  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
   const handleStart = () => {
     setCurr(0);
     setMin(0);
     setMax(0);
-    algorithm.run()
+    algorithm.run();
   };
 
   function iterate(arr: Array<number>) {
@@ -93,10 +97,10 @@ const Visualizer = () => {
         setCurr(element);
         await delay(1000);
       }
-    })()
-  };
+    })();
+  }
 
-  const binarySearch =  (tar: number, arr: Array<number> = testArray) => {
+  const binarySearch = (tar: number, arr: Array<number> = testArray) => {
     (async () => {
       let beg = 0;
       let end = arr.length - 1;
@@ -123,11 +127,11 @@ const Visualizer = () => {
           await delay(2000);
         }
       }
-    })()
+    })();
   };
 
   const getNodeStyle = (i: number) => {
-    let colors = []
+    let colors = [];
     let style: CSS.Properties = {
       height: '50px',
       width: '50px',
@@ -137,105 +141,129 @@ const Visualizer = () => {
       padding: '10px',
       margin: '10px',
       borderRadius: '10',
-      textAlign: 'center'
+      textAlign: 'center',
     };
 
     if (i === min) {
-      colors.push('blue')
+      colors.push('blue');
     }
 
     if (i === curr) {
-      colors.push('green')
+      colors.push('green');
     }
 
     if (i === max) {
-      colors.push('red')
+      colors.push('red');
     }
 
     if (colors.length === 0) {
-      style.background = theme.palette.secondary.light
+      style.background = theme.palette.secondary.light;
     }
 
     if (colors.length > 0) {
-      style.color = 'gold'
+      style.color = 'gold';
     }
 
     if (colors.length === 1) {
-      style.background = colors[0]
+      style.background = colors[0];
     }
 
     if (colors.length > 1) {
       let gradientPercent = 100 / colors.length;
       if (gradientPercent <= 100) {
-        let gradient = colors.map((color, i) => `${color + ' ' + gradientPercent * i + '% ' + gradientPercent * (i + 1)}%`)
-        style.background = `linear-gradient(45deg, ${gradient})`
+        let gradient = colors.map(
+          (color, i) =>
+            `${
+              color +
+              ' ' +
+              gradientPercent * i +
+              '% ' +
+              gradientPercent * (i + 1)
+            }%`
+        );
+        style.background = `linear-gradient(45deg, ${gradient})`;
       }
     }
 
     return style;
-  }
+  };
 
-  const handleDataStructureSelectChange = (event: SelectChangeEvent<string>) => {
-    let ds = dataStructures.find(d => d.value === event.target.value) || array;
+  const handleDataStructureSelectChange = (
+    event: SelectChangeEvent<string>
+  ) => {
+    let ds =
+      dataStructures.find((d) => d.value === event.target.value) || array;
     setDataStructure(ds);
     setAlgorithm(ds?.algorithms[0]);
-  }
+  };
 
   const handleAlgorithmSelectChange = (event: SelectChangeEvent<string>) => {
-    let ag = dataStructure?.algorithms.find(a => a.value === event.target.value) || dataStructure?.algorithms[0];
+    let ag =
+      dataStructure?.algorithms.find((a) => a.value === event.target.value) ||
+      dataStructure?.algorithms[0];
     setAlgorithm(ag);
-  }
+  };
 
   const handleSelectTargetChange = (event: SelectChangeEvent<number>) => {
     let value = event.target.value;
     setTarget(value as number);
-  }
+  };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <>
+      <Typography variant="h3">Visualizer</Typography>
       <Grid container spacing={2} columns={12}>
         <Grid item xs={4}>
           <FormControl fullWidth margin="normal">
-            <InputLabel id='dataStructureLabel'>Data Structure</InputLabel>
+            <InputLabel id="dataStructureLabel">Data Structure</InputLabel>
             <Select
-              id='dataStructureSelect'
-              labelId='dataStructureLabel'
+              id="dataStructureSelect"
+              labelId="dataStructureLabel"
               value={dataStructure?.value}
-              label='Data Structure'
+              label="Data Structure"
               onChange={handleDataStructureSelectChange}
             >
-              {dataStructures.map(dataStructure => <MenuItem key={dataStructure.id} value={dataStructure.value}>{dataStructure.label}</MenuItem>)}
+              {dataStructures.map((dataStructure) => (
+                <MenuItem key={dataStructure.id} value={dataStructure.value}>
+                  {dataStructure.label}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <FormControl fullWidth>
-            <InputLabel id='algorithmLabel'>Algorithm</InputLabel>
+            <InputLabel id="algorithmLabel">Algorithm</InputLabel>
             <Select
-              id='algorithmSelect'
-              labelId='algorithmLabel'
+              id="algorithmSelect"
+              labelId="algorithmLabel"
               value={algorithm?.value}
-              label='Algorithm'
+              label="Algorithm"
               onChange={handleAlgorithmSelectChange}
             >
-              {dataStructure?.algorithms?.map(algorithm => <MenuItem key={algorithm.id} value={algorithm.value}>{algorithm.label}</MenuItem>)}
+              {dataStructure?.algorithms?.map((algorithm) => (
+                <MenuItem key={algorithm.id} value={algorithm.value}>
+                  {algorithm.label}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <FormControl fullWidth margin="normal">
-            <InputLabel id='targetLabel'>Target</InputLabel>
+            <InputLabel id="targetLabel">Target</InputLabel>
             <Select
-              id='targetSelect'
-              labelId='targetLabel'
+              id="targetSelect"
+              labelId="targetLabel"
               value={target}
-              label='Target'
+              label="Target"
               disabled={!algorithm.targetRequired}
               onChange={handleSelectTargetChange}
             >
-              {testArray.map(i => <MenuItem key={i} value={i}>{i}</MenuItem>)}
+              {testArray.map((i) => (
+                <MenuItem key={i} value={i}>
+                  {i}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
-          <Button
-            onClick={handleStart}
-            variant='contained'
-          >
+          <Button onClick={handleStart} variant="contained">
             Start
           </Button>
 
@@ -249,14 +277,17 @@ const Visualizer = () => {
         <Grid item xs={8}>
           <Typography variant="h6">Visualizer</Typography>
           <hr />
-          <div className='flexContainer'>
-            {testArray.map(i => <div key={'node' + i} style={getNodeStyle(i)}>{i}</div>)}
+          <div className="flexContainer">
+            {testArray.map((i) => (
+              <div key={'node' + i} style={getNodeStyle(i)}>
+                {i}
+              </div>
+            ))}
           </div>
         </Grid>
-      </Grid >
-    </Box >
-  )
-}
+      </Grid>
+    </>
+  );
+};
 
 export default Visualizer;
-
