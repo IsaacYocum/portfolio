@@ -30,7 +30,7 @@ const Home = () => {
         </figcaption>
       </BlockQuote>
       <Typography variant="h3">
-        I use this site to conduct <Link to={'projects'}>Experiments</Link>
+        I use this site to conduct <Link to={'experiments'}>Experiments</Link>
       </Typography>
       <Carousel />
       <Typography variant="h3">
