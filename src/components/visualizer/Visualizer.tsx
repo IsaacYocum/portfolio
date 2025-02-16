@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   FormControl,
   Grid,
@@ -10,9 +9,9 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
+import CSS from 'csstype';
 import { useState } from 'react';
 import './Visualizer.css';
-import CSS from 'csstype';
 
 const Visualizer = () => {
   const theme = useTheme();

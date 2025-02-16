@@ -33,14 +33,11 @@ const CarouselCardContainer = styled('div')(({ theme }) => ({
   overflow: 'scroll',
   backgroundColor: theme.palette.background.paper,
   border: `2px solid ${theme.palette.primary.main}`,
+  boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
   height: 'inherit',
 }));
 
 const CarouselCount = styled('div')(({ theme }) => ({}));
-
-const ArrowContainer = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
-}));
 
 type CarouselCardProps = {
   children: ReactNode;
@@ -84,26 +81,22 @@ const CarouselContainer: FC<CarouselContainerProps> = ({
 
   return (
     <CarouselWrapper id="carouselWrapper">
-      <CarouselContent id='carouselContent'>
-        <ArrowContainer>
-          <Tooltip title="Previous Experiment">
-            <IconButton onClick={handleLeftClick}>
-              <ArrowBack fontSize="large" />
-            </IconButton>
-          </Tooltip>
-        </ArrowContainer>
+      <CarouselContent id="carouselContent">
+        <Tooltip title="Previous Experiment">
+          <IconButton onClick={handleLeftClick}>
+            <ArrowBack fontSize="large" />
+          </IconButton>
+        </Tooltip>
         {children?.[activeCardIndex] || <p>no cards defined</p>}
-        <ArrowContainer>
-          <Tooltip title="Next Experiment">
-            <IconButton onClick={handleRightClick}>
-              <ArrowForward fontSize="large" />
-            </IconButton>
-          </Tooltip>
-        </ArrowContainer>
+        <Tooltip title="Next Experiment">
+          <IconButton onClick={handleRightClick}>
+            <ArrowForward fontSize="large" />
+          </IconButton>
+        </Tooltip>
       </CarouselContent>
-        <CarouselCount>
-          {activeCardIndex + 1}/{children.length}
-        </CarouselCount>
+      <CarouselCount>
+        {activeCardIndex + 1}/{children.length}
+      </CarouselCount>
     </CarouselWrapper>
   );
 };
