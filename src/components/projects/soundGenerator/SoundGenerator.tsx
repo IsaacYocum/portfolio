@@ -25,7 +25,6 @@ const SoundGenerator = () => {
   const vol = useRef<GainNode | null>(null);
 
   useEffect(() => {
-
     return () => {
       if (audioContextRef.current) {
         audioContextRef.current.close();

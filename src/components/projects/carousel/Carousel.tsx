@@ -19,10 +19,10 @@ const CarouselCardContainer = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  overflow: 'scroll',
   flex: '1',
   padding: '10px 25px',
   borderRadius: 15,
+  overflow: 'scroll',
   backgroundColor: theme.palette.background.paper,
   height: 'inherit',
 }));
